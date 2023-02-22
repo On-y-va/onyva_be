@@ -34,6 +34,7 @@ group :development, :test do
   gem 'pry'
   gem 'faraday'
   gem 'dotenv-rails'
+  gem 'jsonapi-serializer'
 end
 
 group :development do
