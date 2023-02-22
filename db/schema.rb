@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_22_204818) do
+ActiveRecord::Schema.define(version: 2023_02_22_211738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2023_02_22_204818) do
     t.datetime "event_time"
     t.string "event_id"
     t.integer "votes"
-    t.boolean "confirmed"
+    t.boolean "confirmed", default: true
     t.index ["trip_id"], name: "index_trip_events_on_trip_id"
   end
 

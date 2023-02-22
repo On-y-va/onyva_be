@@ -5,8 +5,10 @@ class CreateTripEvents < ActiveRecord::Migration[5.2]
       t.datetime :event_date
       t.datetime :event_time
       t.string :event_id
-      t.integer :votes
-      t.boolean :confirmed
+      t.integer :votes, default: 0
+      t.boolean :confirmed, default: false
+
+      t.timestamps
     end
   end
 end
