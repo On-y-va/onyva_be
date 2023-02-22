@@ -41,5 +41,22 @@ describe 'Users API' do
         expect(user_data[:emergency_contact_phone_number]).to be_nil
       end
     end
+
+    context 'when the user does not exist' do
+      it 'responds with an error' do
+        user = create(:user)
+
+        get "/api/v1/users/#{User.last.id+1}"
+
+        expect(response).to_not be_successful
+        
+        user = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(404)
+        expect(user).to have_key(:error)
+       
+        expect(user[:error]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
+      end
+    end
   end
 end
