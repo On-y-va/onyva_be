@@ -39,5 +39,24 @@ describe 'GET /users/:id/trips' do
         expect(trip[:attributes][:postcode]).to be_a(String)
       end
     end
+
+    context 'when the user does not exist' do
+      it 'responds with an error' do
+        user = create(:user)
+        trip_1 = create(:trip)
+        trip_2 = create(:trip)
+        
+        trip_attendees_1 = create(:trip_attendee, user_id: user.id, trip_id: trip_1.id)
+        trip_attendees_2 = create(:trip_attendee, user_id: user.id, trip_id: trip_2.id)
+
+        get "/api/v1/users/#{User.last.id+1}/trips"
+
+        trips_data = JSON.parse(response.body, symbolize_names: true)
+        
+        expect(response.status).to eq(404)
+        expect(trips_data).to have_key(:error)
+        expect(trips_data[:error]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
+      end
+    end
   end
 end
