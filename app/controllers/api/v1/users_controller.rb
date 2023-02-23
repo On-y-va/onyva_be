@@ -7,4 +7,8 @@ class Api::V1::UsersController < ApplicationController
     #   render json: ErrorSerializer.bad_request
     # end
   end
+
+  def index
+    render json: UserSerializer.new(User.all)
+  end
 end
