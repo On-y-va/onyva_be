@@ -1,5 +1,7 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter "spec/rails_helper.rb"
+end
 
 require 'webmock/rspec'
 require 'vcr'
