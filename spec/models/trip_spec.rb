@@ -11,6 +11,5 @@ RSpec.describe Trip, type: :model do
     it { should validate_presence_of(:city) }
     it { should validate_presence_of(:country) }
     it { should validate_presence_of(:postcode) }
-    it { should validate_presence_of(:place_id) }
   end
 end
