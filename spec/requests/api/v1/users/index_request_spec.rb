@@ -46,7 +46,7 @@ describe 'Users API' do
       end
     end
 
-    context 'when there are no items in the database' do
+    context 'when there are no users in the database' do
       it 'returns an empty array' do
         get '/api/v1/users'
         expect(response).to be_successful
