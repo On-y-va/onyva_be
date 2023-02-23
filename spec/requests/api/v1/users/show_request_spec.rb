@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Users API' do
-  describe '/GET /users/:id' do
+describe 'Users show API' do
+  describe 'GET /users/:id' do
     context 'when the user exists' do
       it 'can get one user by their id' do
         user = create(:user)

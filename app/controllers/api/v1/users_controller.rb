@@ -1,10 +1,18 @@
 class Api::V1::UsersController < ApplicationController
   def show
-    # if params[:id] 
-      render json: UserSerializer.new(User.find(params[:id]))
-    # else 
-    #   require 'pry'; binding.pry
-    #   render json: ErrorSerializer.bad_request
-    # end
+    render json: UserSerializer.new(User.find(params[:id]))
+  end
+
+  def create
+    user = User.create(user_params)
+    if user.save
+      render json: UserSerializer.new(User.create(user_params)), status: :created
+    end
+  end
+
+  private 
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
   end
 end
