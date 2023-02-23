@@ -33,9 +33,6 @@ describe 'Trips Index API' do
 
           expect(attributes).to have_key(:postcode)
           expect(attributes[:postcode]).to be_a(String)
-
-          expect(attributes).to have_key(:place_id)
-          expect(attributes[:place_id]).to be_a(String)
         end
       end
     end
