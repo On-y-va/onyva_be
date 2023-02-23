@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Users API' do
+describe 'Users Index API' do
   describe '/GET /users' do
     context 'when the user exists' do
       it 'can get all users' do
