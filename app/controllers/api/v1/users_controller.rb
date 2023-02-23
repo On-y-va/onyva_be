@@ -3,12 +3,6 @@ class Api::V1::UsersController < ApplicationController
     render json: UserSerializer.new(User.all)
   end
 
-  def update
-    user = User.find(params[:id])
-    user.update!(user_params)
-    render json: UserSerializer.new(user)
-  end
-
   def show
     render json: UserSerializer.new(User.find(params[:id]))
   end
@@ -17,7 +11,13 @@ class Api::V1::UsersController < ApplicationController
     user = User.create!(user_params)
     render json: UserSerializer.new(user), status: :created
   end
-
+  
+  def update
+    user = User.find(params[:id])
+    user.update!(user_params)
+    render json: UserSerializer.new(user)
+  end
+  
   private
 
   def user_params
