@@ -1,7 +1,10 @@
 
-<div id="header" align="left">
-<img src="src/assets/onyva_logo_dark.png" alt="onyva logo" width="200" height="auto" />
-</div># Onyva Backend Service
+<div id="header" align="center">
+<img src="src/assets/logo_transparent.png" alt="onyva logo" width="200" height="auto" />
+</div>
+
+# Onyva Backend Service
+
 API for Onyva Trip Planning Application
 
 ## RESTful Endpoints
