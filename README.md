@@ -7,6 +7,8 @@
 
 API for Onyva Trip Planning Application
 
+[Production Link]()
+
 ## RESTful Endpoints
 
 ### Get all Users
@@ -138,6 +140,20 @@ Onyva returns the following status codes in its API:
 | 400 | `BAD REQUEST` |
 | 404 | `NOT FOUND` |
 | 500 | `INTERNAL SERVER ERROR` |
+
+## Prerequisites
+Running this project requires Rails 5.2.8 and Ruby 2.7.4.
+
+## Installation
+
+1. Fork and clone this repository
+2. `cd` into the root directiory
+3. `bundle install`
+4. `rails db:{drop,create,migrate,seed}`
+5. Run the test suite with `bundle exec rspec`
+6. Start the local server by running `rails s'
+
+Pull down the [Front-end repo](https://github.com/On-y-va/onyva_fe). Set up instructions are in that repository's README.
 
 ## Database Schema
 
