@@ -25,5 +25,22 @@ describe 'Users create API' do
         expect(new_user.email).to eq(user_params[:email])
       end
     end
+
+    context 'when a user is not created' do
+      it 'fails to create a user when the first name is left empty' do
+        user_params = ({ 
+          first_name: '',
+          last_name: 'Potter',
+          email: 'harry.potter@hogwarts.com',
+          phone_number: '123456789',
+          password: 'password123',
+          password_confirmation: 'password123'
+        })
+
+        headers = { "CONTENT_TYPE" => "application/json" }
+
+        post "/api/v1/users", headers: headers, params: JSON.generate(user: user_params)
+      end
+    end
   end
 end
