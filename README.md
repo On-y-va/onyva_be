@@ -97,6 +97,50 @@ Example Value:
 
 ### Edit a User
 
+```http
+PATCH /api/v1/users/:id
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": {
+        "id": "1",
+        "type": "user",
+        "attributes": {
+            "first name": "bob",
+            "Last_name": "Jef",
+            "phone_number": "123456789",
+            "email": "jef@jef.com",
+            "password_digest": "$2a$12$fluERN41F2GOxWGW08JPmOh7AwL]rdDJo4fXyrLukj5yzGKIG/Kpiv"
+            "emergency_contact_name": null,
+            "emergency_contact_phone_number": null
+        }
+    }
+}
+```
+    
+| Code | Description |
+| :--- | :--- |
+| 400 | `BAD REQUEST` |
+
+</details>
+
+
 ---
 
 
@@ -106,6 +150,57 @@ Example Value:
 
 
 ### Get a Trip
+
+
+```http
+GET /api/v1/trips/:id
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+No Parameters
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": {
+        "id": "1",
+        "type": "trip",
+        "attributes": {
+            "name": "Girl's Trip",
+            "city": "Denver",
+            "country": "United States",
+            "postcode": "80020",
+            "place_id": "21fqirl123b1278"
+        }
+    }
+}
+```
+| Code | Description |
+| :--- | :--- |
+| 400 | `BAD REQUEST` |
+    
+    
+Example Value:
+
+```json
+{
+    "data": {
+    }
+}
+```
+
+</details>
 
 
 ---
