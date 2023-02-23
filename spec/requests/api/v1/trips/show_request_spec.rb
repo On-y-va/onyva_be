@@ -34,5 +34,22 @@ describe 'Trips show API' do
         expect(trip_data[:place_id]).to be_a(String)
       end
     end
+
+    context 'when the trip does not exist' do
+      it 'responds with an error' do
+        trip = create(:trip)
+
+        get "/api/v1/trips/#{Trip.last.id+1}"
+
+        expect(response).to_not be_successful
+
+        trip = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(404)
+        expect(trip).to have_key(:error)
+
+        expect(trip[:error]).to match(/Couldn't find Trip with 'id'=#{Trip.last.id+1}/)
+      end
+    end
   end
 end
