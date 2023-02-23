@@ -23,8 +23,7 @@ describe 'Users Delete API' do
 
         delete "/api/v1/users/#{User.last.id+1}"
         response_body = JSON.parse(response.body, symbolize_names: true)
-        require 'pry'; binding.pry
-
+       
         expect(response).to_not be_successful
         expect(response.status).to eq(404)
         expect(response_body[:error]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
