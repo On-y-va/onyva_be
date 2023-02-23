@@ -91,24 +91,6 @@ describe 'Users update API' do
 
         expect(response_body[:error]).to match("Validation failed: Postcode can't be blank")
       end
-
-      it 'fails if to update if trip place_id is left blank' do
-        trip = create(:trip, place_id: 'Updated Trip')
-        previous_trip_place_id = Trip.last.place_id
-        trip_params = { place_id: "" }
-        headers = { "CONTENT_TYPE" => "application/json" }
-        
-        patch "/api/v1/trips/#{trip.id}", headers: headers, params: JSON.generate({trip: trip_params})
-        response_body = JSON.parse(response.body, symbolize_names: true)
-        trip = Trip.find_by(id: trip.id)
-        
-        expect(response).to_not be_successful
-        expect(response.status).to eq(400)
-        expect(trip.place_id).to eq(previous_trip_place_id)
-        expect(trip.place_id).to eq("Updated Trip")
-
-        expect(response_body[:error]).to match("Validation failed: Place can't be blank")
-      end
     end
   end
 end

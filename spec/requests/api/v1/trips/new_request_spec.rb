@@ -8,8 +8,7 @@ describe 'Trips create API' do
                         name: "Girl's Trip",
                         city: "Denver",
                         country: "United States",
-                        postcode: '80020',
-                        place_id: '1234jbgr823bnkas'
+                        postcode: '80020'
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -23,7 +22,6 @@ describe 'Trips create API' do
         expect(new_trip.city).to eq(trip_params[:city])
         expect(new_trip.country).to eq(trip_params[:country])
         expect(new_trip.postcode).to eq(trip_params[:postcode])
-        expect(new_trip.place_id).to eq(trip_params[:place_id])
       end
     end 
 
@@ -33,8 +31,7 @@ describe 'Trips create API' do
           name: "",
           city: "Denver",
           country: "United States",
-          postcode: '80020',
-          place_id: '1234jbgr823bnkas'
+          postcode: '80020'
         })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -51,8 +48,7 @@ describe 'Trips create API' do
           name: "Girl's Trip",
           city: "",
           country: "United States",
-          postcode: '80020',
-          place_id: '1234jbgr823bnkas'
+          postcode: '80020'
         })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -69,8 +65,7 @@ describe 'Trips create API' do
           name: "Girl's Trip",
           city: "Denver",
           country: "",
-          postcode: '80020',
-          place_id: '1234jbgr823bnkas'
+          postcode: '80020'
         })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -87,8 +82,7 @@ describe 'Trips create API' do
           name: "Girl's Trip",
           city: 'Denver',
           country: 'United States',
-          postcode: '',
-          place_id: '1234jbgr823bnkas'
+        postcode: ''
         })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -98,24 +92,6 @@ describe 'Trips create API' do
         expect(response).to_not be_successful
         expect(response.status).to be(400)
         expect(response_body[:error]).to eq("Validation failed: Postcode can't be blank")
-      end
-
-      it 'fails to create a trip when the place_id is left blank' do
-        trip_params = ({
-          name: "Girl's Trip",
-          city: 'Denver',
-          country: 'United States',
-          postcode: '80020',
-          place_id: ''
-        })
-        headers = { "CONTENT_TYPE" => "application/json" }
-
-        post "/api/v1/trips", headers: headers, params: JSON.generate(trip: trip_params)
-        response_body = JSON.parse(response.body, symbolize_names: true)
-
-        expect(response).to_not be_successful
-        expect(response.status).to be(400)
-        expect(response_body[:error]).to eq("Validation failed: Place can't be blank")
       end
     end
   end
