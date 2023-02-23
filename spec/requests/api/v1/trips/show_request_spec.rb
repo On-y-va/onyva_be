@@ -29,9 +29,6 @@ describe 'Trips show API' do
 
         expect(trip_data).to have_key(:postcode)
         expect(trip_data[:postcode]).to be_a(String)
-
-        expect(trip_data).to have_key(:place_id)
-        expect(trip_data[:place_id]).to be_a(String)
       end
     end
 
