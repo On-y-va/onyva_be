@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe City do
   it 'exists and has attibutes', :vcr do
-    cities = CityFacade.get_city_info("Barcelona")
+    cities = CityFacade.get_city_info("Barcelona", "Spain")
 
     city = cities[0]
     expect(city).to be_a(City)
