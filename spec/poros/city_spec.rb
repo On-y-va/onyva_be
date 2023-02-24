@@ -6,7 +6,7 @@ RSpec.describe City do
 
     city = cities[0]
     expect(city).to be_a(City)
-    expect(city.name).to eq("Barcelona")
+    expect(city.city_name).to eq("Barcelona")
     expect(city.country).to eq("Spain")
     expect(city.postcode).to eq("08001")
     expect(city.place_id).to eq("51040fc292616b014059402bd5aa02b14440f00101f9012e4f050000000000c00207")
