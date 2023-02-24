@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_23_190929) do
+ActiveRecord::Schema.define(version: 2023_02_23_234609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,8 +37,6 @@ ActiveRecord::Schema.define(version: 2023_02_23_190929) do
     t.string "event_id"
     t.integer "votes"
     t.boolean "confirmed", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_trip_events_on_trip_id"
   end
 
@@ -48,6 +46,8 @@ ActiveRecord::Schema.define(version: 2023_02_23_190929) do
     t.string "country"
     t.string "postcode"
     t.string "place_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
 
   create_table "users", force: :cascade do |t|
