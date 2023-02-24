@@ -9,8 +9,8 @@ describe 'Trips create API' do
                         city: "Denver",
                         country: "United States",
                         postcode: '80020',
-                        start_date: Date.today + 30.days,
-                        end_date: Date.today + 45.days
+                        start_date: "11/08/25",
+                        end_date: "11/30/25"
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -34,8 +34,8 @@ describe 'Trips create API' do
                         city: "Denver",
                         country: "United States",
                         postcode: '80020',
-                        start_date: Date.today + 30.days,
-                        end_date: Date.today + 45.days
+                        start_date: "11/08/25",
+                        end_date: "11/30/25"
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -53,8 +53,8 @@ describe 'Trips create API' do
                         city: "",
                         country: "United States",
                         postcode: '80020',
-                        start_date: Date.today + 30.days,
-                        end_date: Date.today + 45.days
+                        start_date: "11/08/25",
+                        end_date: "11/30/25"
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -72,8 +72,8 @@ describe 'Trips create API' do
                         city: "Denver",
                         country: "",
                         postcode: '80020',
-                        start_date: Date.today + 30.days,
-                        end_date: Date.today + 45.days
+                        start_date: "11/08/25",
+                        end_date: "11/30/25"
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -91,9 +91,9 @@ describe 'Trips create API' do
                         city: 'Denver',
                         country: 'United States',
                         postcode: '',
-                        start_date: Date.today + 30.days,
-                        end_date: Date.today + 45.days
-                       })
+                        start_date: "11/08/25",
+                        end_date: "11/30/25"
+                        })
         headers = { "CONTENT_TYPE" => "application/json" }
 
         post "/api/v1/trips", headers: headers, params: JSON.generate(trip: trip_params)
@@ -111,7 +111,7 @@ describe 'Trips create API' do
                         country: 'United States',
                         postcode: '80020',
                         start_date: " ",
-                        end_date: Date.today + 45.days
+                        end_date: "11/30/25"
                        })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -129,7 +129,7 @@ describe 'Trips create API' do
                         city: 'Denver',
                         country: 'United States',
                         postcode: '80020',
-                        start_date: Date.today + 45.days,
+                        start_date: "11/30/25",
                         end_date: ""
                        })
         headers = { "CONTENT_TYPE" => "application/json" }

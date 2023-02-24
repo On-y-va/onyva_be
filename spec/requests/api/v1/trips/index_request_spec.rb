@@ -33,6 +33,12 @@ describe 'Trips Index API' do
 
           expect(attributes).to have_key(:postcode)
           expect(attributes[:postcode]).to be_a(String)
+
+          expect(attributes).to have_key(:start_date)
+          expect(attributes[:start_date]).to be_a(String)
+
+          expect(attributes).to have_key(:end_date)
+          expect(attributes[:end_date]).to be_a(String)
         end
       end
     end
