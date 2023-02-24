@@ -9,7 +9,7 @@ describe 'Users show API' do
         get "/api/v1/users/#{user.id}"
 
         user_response = JSON.parse(response.body, symbolize_names: true)
-        
+
         expect(response).to be_successful
 
         expect(user_response).to have_key(:data)

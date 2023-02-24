@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2023_02_24_003052) do
     t.string "event_id"
     t.integer "votes"
     t.boolean "confirmed", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_trip_events_on_trip_id"
   end
 
