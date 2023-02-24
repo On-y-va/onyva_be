@@ -1,11 +1,11 @@
 class City
-  attr_reader :name,
+  attr_reader :city_name,
               :country,
               :postcode,
               :place_id
 
   def initialize(attributes)
-    @name = attributes[:properties][:city]
+    @city_name = attributes[:properties][:city]
     @country = attributes[:properties][:country]
     @postcode = attributes[:properties][:postcode]
     @place_id = attributes[:properties][:place_id]
