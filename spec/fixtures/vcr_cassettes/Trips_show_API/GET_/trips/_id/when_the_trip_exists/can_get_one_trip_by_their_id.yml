@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<geoapify_key>&countryUnited%2BStates&lang=en&limit=1&postcode=80241&text=Denver&type=city
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 25 Feb 2023 01:08:58 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Version:
+      - '1.0'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
+        access-control-allow-methods, access-control-allow-origin, allow, api-version,
+        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
+        cache-control, etag, last-modified, expires, host, cf-iplatitude, cf-iplongitude,
+        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
+        cf-connecting-ip, cf-pseudo-ipv4, cdn-loop, cf-ipcity, cf-ipcontinent, cf-ipcountry,
+        x-forwarded-port
+      Access-Control-Allow-Methods:
+      - GET, POST, DELETE, OPTIONS, PUT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Cache-Control:
+      - private, max-age=0, no-cache
+      Content-Disposition:
+      - inline; filename=response.geojson
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=c8lc9%2BPRF1133Sn3tv7oa2NqS6edf0nRc8Q5c%2FTDjscUXK21sKqeUtz6MhIv9bqLVo1ld55gKJtfNoiFBhBtASwf34yq1uyvn8CRkvUcAD0wYPLq8z28urUSLB6%2F2awW0N8BIgYBUjSSGO60a4k%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 79ec8d83a80e1f32-DEN
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[-104.985798,39.740959]},"properties":{"country_code":"us","country":"United
+        States","county":"Denver County","datasource":{"sourcename":"whosonfirst","url":"https://www.whosonfirst.org/docs/licenses/"},"state":"Colorado","city":"Denver","lon":-104.985798,"lat":39.740959,"state_code":"CO","formatted":"Denver,
+        CO, United States of America","address_line1":"Denver, CO","address_line2":"United
+        States of America","timezone":{"name":"America/Denver","offset_STD":"-07:00","offset_STD_seconds":-25200,"offset_DST":"-06:00","offset_DST_seconds":-21600,"abbreviation_STD":"MST","abbreviation_DST":"MDT"},"result_type":"city","rank":{"popularity":7.869565382548606,"confidence":1,"confidence_city_level":1,"match_type":"full_match"},"place_id":"51959d7e50173f5ac059a35698bed7de4340c00208e2031d77686f736f6e66697273743a6c6f63616c6974793a3835393238383739"},"bbox":[-105.109967,39.614311,-104.599581,39.914209]}],"query":{"text":"Denver","parsed":{"postcode":"80241","city":"denver","expected_type":"postcode"}}}'
+  recorded_at: Sat, 25 Feb 2023 01:08:58 GMT
+recorded_with: VCR 6.1.0
