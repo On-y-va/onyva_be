@@ -28,4 +28,15 @@ RSpec.describe User, type: :model do
       expect(User.find_user_by_email("e@gmail.com")).to eq(user3)
     end
   end
+
+  describe '#find_user_by_flight' do
+    it 'returns the user from flight' do 
+      t1 = Trip.create!(name: "Test Trip", city: "London", country: "United States", postcode: "1234", start_date: "1", end_date: "2")
+      u1 = User.create!(first_name: "M", last_name: "M", phone_number: "1234", email: "asdfasdf@asdf.com", password: "1", password_confirmation: "1")
+      ta1 = TripAttendee.create!(user_id: u1.id, trip_id: t1.id)
+      f1 = Flight.create!(user_id: u1.id, airline_code: "SW", flight_number: "1", date: DateTime.new(2012, 8, 29, 22, 35, 0))
+
+      expect(User.find_user_by_flight(f1)).to eq(u1)
+    end
+  end
 end

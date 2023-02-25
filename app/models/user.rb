@@ -11,4 +11,8 @@ class User < ApplicationRecord
     self.where("email = ?", "#{email}")
     .first
   end
+
+  def self.find_user_by_flight(flight)
+    User.find_by(id: flight.user_id)
+  end
 end
