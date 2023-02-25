@@ -16,4 +16,27 @@ RSpec.describe User, type: :model do
     it {should validate_presence_of(:password_digest)}
     it { should have_secure_password }
   end
+
+  describe '#find_user_by_email' do
+    it 'returns a user by the email' do
+      user = User.create!(first_name: "Bob", last_name: "Evans", phone_number: "1234567", email: "be@gmail.com", password: "123")
+      user2 = User.create!(first_name: "Alex", last_name: "Barrett", phone_number: "1234567", email: "abe@gmail.com", password: "123")
+      user3 = User.create!(first_name: "Alex", last_name: "Barrett", phone_number: "1234567", email: "e@gmail.com", password: "123")
+
+      expect(User.find_user_by_email("be@gmail.com")).to eq(user)
+      expect(User.find_user_by_email("e@gmail.com")).to_not eq(user)
+      expect(User.find_user_by_email("e@gmail.com")).to eq(user3)
+    end
+  end
+
+  describe '#find_user_by_flight' do
+    it 'returns the user from flight' do 
+      t1 = Trip.create!(name: "Test Trip", city: "London", country: "United States", postcode: "1234", start_date: "1", end_date: "2")
+      u1 = User.create!(first_name: "M", last_name: "M", phone_number: "1234", email: "asdfasdf@asdf.com", password: "1", password_confirmation: "1")
+      ta1 = TripAttendee.create!(user_id: u1.id, trip_id: t1.id)
+      f1 = Flight.create!(user_id: u1.id, airline_code: "SW", flight_number: "1", date: DateTime.new(2012, 8, 29, 22, 35, 0))
+
+      expect(User.find_user_by_flight(f1)).to eq(u1)
+    end
+  end
 end
