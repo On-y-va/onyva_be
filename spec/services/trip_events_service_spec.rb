@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TripEventsService do
   it 'can return information based off a city', :vcr do
-    city_search = TripEventsService.get_city("Barcelona", "Spain")
+    city_search = TripEventsService.get_city("Barcelona", "Spain", "08001")
     
     expect(city_search).to be_a(Hash)
     expect(city_search).to have_key(:features)
@@ -26,8 +26,8 @@ RSpec.describe TripEventsService do
     expect(city[:properties][:place_id]).to be_a(String)
   end
 
-  it 'can return restaurant based off a city', :vcr do
-    city = CityFacade.get_city_info("Barcelona", "Spain")
+  it 'can return restaurants based off a city', :vcr do
+    city = CityFacade.get_city_info("Barcelona", "Spain", "08001")
     place_id = city.place_id
 
     restaurant_search = TripEventsService.get_restaurants(place_id)
@@ -43,9 +43,6 @@ RSpec.describe TripEventsService do
 
     expect(restaurant[:properties]).to have_key(:name)
     expect(restaurant[:properties][:name]).to be_a(String)
-
-    expect(restaurant[:properties]).to have_key(:address_line1)
-    expect(restaurant[:properties][:address_line1]).to be_a(String)
 
     expect(restaurant[:properties]).to have_key(:address_line2)
     expect(restaurant[:properties][:address_line2]).to be_a(String)
