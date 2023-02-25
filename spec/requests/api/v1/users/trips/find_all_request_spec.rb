@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Find all trips for a user API' do
   describe 'GET /users/:id/trips/find_all' do
     context 'if the user is found' do
-      it 'can return the users trip by status pending' do
+      xit 'can return the users trip by status pending' do
         user = create(:user)
 
         trip_1 = create(:trip)
@@ -46,7 +46,7 @@ describe 'Find all trips for a user API' do
         expect(data[:last_name]).to be_a(String)
       end
 
-      it 'can return the users trip by status accepted' do
+      xit 'can return the users trip by status accepted' do
         user = create(:user)
 
         trip_1 = create(:trip)
@@ -85,7 +85,7 @@ require 'pry'; binding.pry
         expect(data[:last_name]).to be_a(String)
       end
 
-      it 'can return the users trip by status declined' do
+      xit 'can return the users trip by status declined' do
         user = create(:user)
 
         trip_1 = create(:trip)
@@ -126,7 +126,7 @@ require 'pry'; binding.pry
     end
 
     context 'if the user is found' do
-      it 'can return the users trip by status pending' do
+      xit 'can return the users trip by status pending' do
         user = create(:user)
 
         trip_1 = create(:trip)

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       end
       resources :trips, only: [:index, :show, :create, :update, :destroy] do
         resources :trip_events, only: [:index], controller: 'trips/trip_events'
-        resources :flights, only: [:index], controller: 'trips/flights'
+        resources :flights, only: [:index, :create], controller: 'trips/flights'
       end
     end
   end
