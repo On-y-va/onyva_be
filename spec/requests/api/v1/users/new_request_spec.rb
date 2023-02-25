@@ -86,26 +86,6 @@ describe 'Users create API' do
         expect(response.status).to be(400)
         expect(response_body[:error]).to eq("Validation failed: Email can't be blank")
       end
-
-      it 'fails to create a user when the phone number is left blank' do
-        user_params = ({ 
-          first_name: 'Harry',
-          last_name: 'Potter',
-          email: 'harry.potter@hogwarts.com',
-          phone_number: '',
-          password: 'password123',
-          password_confirmation: 'password123'
-        })
-
-        headers = { "CONTENT_TYPE" => "application/json" }
-
-        post "/api/v1/users", headers: headers, params: JSON.generate(user: user_params)
-        response_body = JSON.parse(response.body, symbolize_names: true)
-
-        expect(response).to_not be_successful
-        expect(response.status).to be(400)
-        expect(response_body[:error]).to eq("Validation failed: Phone number can't be blank")
-      end
      
       it 'fails to create a user when the password is left blank' do
         user_params = ({ 

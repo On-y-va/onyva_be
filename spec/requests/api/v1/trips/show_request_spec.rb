@@ -4,7 +4,7 @@ describe 'Trips show API' do
   describe 'GET /trips/:id' do
     context 'when the trip exists' do
       it 'can get one trip by their id' do
-        trip = create(:trip)
+        trip = create(:trip, city: "Denver", country: "United States", postcode: "80241")
 
         get "/api/v1/trips/#{trip.id}"
 
