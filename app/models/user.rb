@@ -13,6 +13,11 @@ class User < ApplicationRecord
   end
 
   def self.find_user_by_flight(flight)
-    User.find_by(id: flight.user_id)
+    self.find_by(id: flight.user_id)
+  end
+
+  def find_user_trip_by_status(trip_status)
+    require 'pry'; binding.pry
+    self.trip_attendees.where(status: "#{trip_status}")
   end
 end
