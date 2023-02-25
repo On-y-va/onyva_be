@@ -1,5 +1,13 @@
 class Api::V1::Users::Trips::FindAllController < ApplicationController
   def show
-    render json: UserSerializer.new(User.find(params[:id])) if params[:status] == "pending" || params[:status] == "accepted" || params[:status] == "declined" 
+    user = User.find(params[:id])
+    if params[:status] == "pending" 
+      trips = user.find_user_trip_by_status(params[:status])    
+      # require 'pry'; binding.pry
+      render json: TripSerializer.new(trips)
+    else 
+    # || params[:status] == "accepted" || params[:status] == "declined" 
+    end
+
   end
 end

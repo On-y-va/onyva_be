@@ -20,8 +20,8 @@ describe 'Find all trips for a user API' do
 
         get "/api/v1/users/#{user.id}/trips/find_all", params: {status: trip_attendees_1.status}
 
+        # require 'pry'; binding.pry
         user_trip_response = JSON.parse(response.body, symbolize_names: true)
- 
         expect(response).to be_successful 
 
         expect(user_trip_response).to have_key(:data)
@@ -62,7 +62,7 @@ describe 'Find all trips for a user API' do
         user_trip_response = JSON.parse(response.body, symbolize_names: true)
  
         expect(response).to be_successful 
-
+require 'pry'; binding.pry
         expect(user_trip_response).to have_key(:data)
         expect(user_trip_response[:data]).to have_key(:id)
         expect(user_trip_response[:data]).to have_key(:attributes)
