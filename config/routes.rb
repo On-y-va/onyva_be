@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         resources :trips, only: [:index], controller: 'users/trips'
       end
       resources :trips, only: [:index, :show, :create, :update, :destroy] do
+        resources :trip_events, only: [:index], controller: 'trips/trip_events'
         resources :flights, only: [:index], controller: 'trips/flights'
       end
     end
