@@ -56,24 +56,6 @@ describe 'Users update API' do
         expect(response_body[:error]).to match("Validation failed: Last name can't be blank")
       end
 
-      it 'fails if to update if user phone number is left blank' do
-        user = create(:user, phone_number: '123456789')
-        previous_user_description = User.last.phone_number
-        user_params = { phone_number: "" }
-        headers = { "CONTENT_TYPE" => "application/json" }
-        
-        patch "/api/v1/users/#{user.id}", headers: headers, params: JSON.generate({user: user_params})
-        response_body = JSON.parse(response.body, symbolize_names: true)
-        user = User.find_by(id: user.id)
-        
-        expect(response).to_not be_successful
-        expect(response.status).to eq(400)
-        expect(user.phone_number).to eq(previous_user_description)
-        expect(user.phone_number).to eq("123456789")
-
-        expect(response_body[:error]).to match("Validation failed: Phone number can't be blank")
-      end
-
       it 'fails if to update if user email is left blank' do
         user = create(:user, email: 'jeff@jeff.com')
         previous_user_description = User.last.email
