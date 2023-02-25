@@ -4,7 +4,11 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def show
+    trip = Trip.find(params[:id])
     render json: TripSerializer.new(Trip.find(params[:id]))
+    # city = CityFacade.get_city_info(trip.city, trip.country, trip.postcode)
+    # erase vcr
+    # restaurants = CityFacade.get_restaurant(city.place_id)
   end
 
   def create
