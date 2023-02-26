@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#find_user_trip_by_status' do
-    xit "returns a user's trip based off status" do
+    it "returns a user's trip based off status" do
       user = create(:user)
 
       trip_1 = create(:trip)
@@ -56,12 +56,12 @@ RSpec.describe User, type: :model do
       trip_attendees_5 = create(:trip_attendee, user_id: user.id, trip_id: trip_5.id, status: 1)
       trip_attendees_6 = create(:trip_attendee, user_id: user.id, trip_id: trip_6.id, status: 2)
     
-      expect(user.find_user_trip_by_status("pending")).to eq([trip_1, trip_2])
-      expect(user.find_user_trip_by_status("accepted")).to eq([trip_3, trip_4, trip_5])
-      expect(user.find_user_trip_by_status("declined")).to eq([trip_6])
-      expect(user.find_user_trip_by_status("accepted")).to_not eq([trip_1, trip_6])
-      expect(user.find_user_trip_by_status("pending")).to_not eq([trip_3, trip_5])
-      expect(user.find_user_trip_by_status("declined")).to_not eq([trip_1])
+      expect(user.find_user_trip_by_status(0)).to eq([trip_1, trip_2])
+      expect(user.find_user_trip_by_status(1)).to eq([trip_3, trip_4, trip_5])
+      expect(user.find_user_trip_by_status(2)).to eq([trip_6])
+      expect(user.find_user_trip_by_status(1)).to_not eq([trip_1, trip_6])
+      expect(user.find_user_trip_by_status(0)).to_not eq([trip_3, trip_5])
+      expect(user.find_user_trip_by_status(2)).to_not eq([trip_1])
     end
   end
 end
