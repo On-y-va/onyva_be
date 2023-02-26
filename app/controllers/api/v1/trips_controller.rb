@@ -20,6 +20,8 @@ class Api::V1::TripsController < ApplicationController
         TripEvent.create!(trip_id: trip.id, event_id: restaurant.place_id, name: restaurant.name, address: restaurant.address)
       end
       render json: TripSerializer.new(trip), status: :created
+      # options = {include: [:trip_events]} 
+      # render json: TripSerializer.new(trip, options), status: :created
     else
       render json: ErrorSerializer.no_matches_found
     end
@@ -39,6 +41,6 @@ class Api::V1::TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :city, :country, :postcode, :start_date, :end_date).merge(place_id: @place_id, restaurants: @restaurants)
+    params.require(:trip).permit(:name, :city, :country, :postcode, :start_date, :end_date).merge(place_id: @place_id)
   end
 end

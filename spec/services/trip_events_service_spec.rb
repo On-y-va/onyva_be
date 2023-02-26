@@ -47,4 +47,26 @@ RSpec.describe TripEventsService do
     expect(restaurant[:properties]).to have_key(:address_line2)
     expect(restaurant[:properties][:address_line2]).to be_a(String)
   end
+
+  it 'can return suggested things to do based off a city', :vcr do 
+    city = CityFacade.get_city_info("Barcelona", "Spain", "08001")
+    place_id = city.place_id
+
+    tourist_attractions_search = TripEventsService.get_tourist_attractions(place_id)
+
+    expect(tourist_attractions_search).to be_a(Hash)
+    expect(tourist_attractions_search).to have_key(:features)
+    expect(tourist_attractions_search[:features]).to be_an(Array)
+    
+    tourist_attractions = tourist_attractions_search[:features][0]
+ 
+    expect(tourist_attractions).to have_key(:properties)
+    expect(tourist_attractions[:properties]).to be_a(Hash)
+
+    expect(tourist_attractions[:properties]).to have_key(:name)
+    expect(tourist_attractions[:properties][:name]).to be_a(String)
+
+    expect(tourist_attractions[:properties]).to have_key(:address_line2)
+    expect(tourist_attractions[:properties][:address_line2]).to be_a(String)
+  end
 end

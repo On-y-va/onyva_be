@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_26_042220) do
+ActiveRecord::Schema.define(version: 2023_02_26_220616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2023_02_26_042220) do
     t.string "place_id"
     t.string "start_date"
     t.string "end_date"
-    t.text "restaurants", default: [], array: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,9 +60,9 @@ ActiveRecord::Schema.define(version: 2023_02_26_042220) do
     t.string "last_name"
     t.string "phone_number"
     t.string "email"
-    t.string "password_digest"
     t.string "emergency_contact_name"
     t.string "emergency_contact_phone_number"
+    t.string "google_uid"
   end
 
   add_foreign_key "flights", "users"

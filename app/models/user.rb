@@ -3,9 +3,9 @@ class User < ApplicationRecord
   has_many :trip_attendees, dependent: :destroy
   has_many :trips, through: :trip_attendees, dependent: :destroy
 
-  validates_presence_of :first_name, :last_name, :email, :password_digest
+  validates_presence_of :first_name, :last_name, :email, :google_uid
   validates_uniqueness_of :email
-  has_secure_password
+  validates_uniqueness_of :google_uid
 
   enum status: { pending: 0, accepted: 1, declined: 2 }
 

@@ -6,7 +6,7 @@ describe 'Users search API' do
       it 'can get a user by email' do
         create_list(:user, 4)
 
-        user = User.create!(first_name: "Bob", last_name: "Evans", phone_number: "1234567", email: "be@gmail.com", password: "123")
+        user = User.create!(first_name: "Bob", last_name: "Evans", phone_number: "1234567", email: "be@gmail.com", google_uid: "1234")
 
         get "/api/v1/users/find", params: {email: user.email}
 
@@ -34,9 +34,6 @@ describe 'Users search API' do
 
         expect(attributes).to have_key(:phone_number)
         expect(attributes[:phone_number]).to be_a(String)
-
-        expect(attributes).to have_key(:password_digest)
-        expect(attributes[:password_digest]).to be_a(String)
 
         expect(attributes).to have_key(:emergency_contact_name)
         expect(attributes[:emergency_contact_name]).to be_nil
