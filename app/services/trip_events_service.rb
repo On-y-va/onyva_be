@@ -9,6 +9,11 @@ class TripEventsService
     JSON.parse(response.body, symbolize_names: true)
   end
 
+  def self.get_tourist_attractions(place_id)
+    response = conn.get("/v2/places?categories=tourism&filter=place:#{place_id}&lang=en&limit=10&apiKey=#{ENV['GEOAPIFY_KEY']}")
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
   private 
 
   def self.conn
