@@ -13,30 +13,30 @@ describe 'Trip Trip Events Index API' do
 
       get "/api/v1/trips/#{t1.id}/trip_events"
 
-      trip_events_response = JSON.parse(response.body, symbolize_names: true)
- 
+      trip_events_response = JSON.parse(response.body, symbolize_names: true)[:data]
       expect(response).to be_successful
+      
+      trip_events_response.each do |trip_event| 
+        expect(trip_event).to have_key(:id)
+   
+        expect(trip_event[:attributes]).to have_key(:trip_id)
+        expect(trip_event[:attributes][:trip_id]).to be_a(Integer)
 
-      expect(trip_events_response).to have_key(:data)
-      expect(trip_events_response[:data]).to have_key(:id)
+        expect(trip_event[:attributes]).to have_key(:event_date)
+        expect(trip_event[:attributes][:event_date]).to be_a(String)
 
-      expect(trip_events_response[:data][:attributes]).to have_key(:trip_id)
-      expect(trip_events_response[:data][:attributes][:trip_id]).to be_a(Integer)
+        expect(trip_event[:attributes]).to have_key(:event_time)
+        expect(trip_event[:attributes][:event_time]).to be_a(String)
 
-      expect(trip_events_response[:data][:attributes]).to have_key(:event_date)
-      expect(trip_events_response[:data][:attributes][:event_date]).to be_a(String)
+        expect(trip_event[:attributes]).to have_key(:event_id)
+        expect(trip_event[:attributes][:event_id]).to be_a(String)
 
-      expect(trip_events_response[:data][:attributes]).to have_key(:event_time)
-      expect(trip_events_response[:data][:attributes][:event_time]).to be_a(String)
+        expect(trip_event[:attributes]).to have_key(:votes)
+        expect(trip_event[:attributes][:votes]).to be_a(Integer)
 
-      expect(trip_events_response[:data][:attributes]).to have_key(:event_id)
-      expect(trip_events_response[:data][:attributes][:event_id]).to be_a(String)
-
-      expect(trip_events_response[:data][:attributes]).to have_key(:votes)
-      expect(trip_events_response[:data][:attributes][:votes]).to be_a(Integer)
-
-      expect(trip_events_response[:data][:attributes]).to have_key(:confirmed)
-      expect(trip_events_response[:data][:attributes][:confirmed]).to be_in([true, false])
+        expect(trip_event[:attributes]).to have_key(:confirmed)
+        expect(trip_event[:attributes][:confirmed]).to be_in([true, false])
+      end
     end
   end
 end
