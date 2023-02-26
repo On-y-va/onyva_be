@@ -30,10 +30,7 @@ describe 'Users show API' do
         
         expect(user_data).to have_key(:phone_number)
         expect(user_data[:phone_number]).to be_a(String)
-        
-        expect(user_data).to have_key(:password_digest)
-        expect(user_data[:password_digest]).to be_a(String)
-        
+
         expect(user_data).to have_key(:emergency_contact_name)
         expect(user_data[:emergency_contact_name]).to be_nil
         

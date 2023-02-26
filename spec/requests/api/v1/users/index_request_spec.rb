@@ -34,9 +34,6 @@ describe 'Users Index API' do
           expect(attributes).to have_key(:phone_number)
           expect(attributes[:phone_number]).to be_a(String)
 
-          expect(attributes).to have_key(:password_digest)
-          expect(attributes[:password_digest]).to be_a(String)
-
           expect(attributes).to have_key(:emergency_contact_name)
           expect(attributes[:emergency_contact_name]).to be_nil
 
