@@ -11,4 +11,11 @@ class CityFacade
       Restaurant.new(restaurant)
     end
   end
+
+  def self.get_tourist_attraction_info(place_id)
+    tourist_attraction_info = TripEventsService.get_tourist_attractions(place_id)
+    tourist_attraction_info[:features].map do |attraction|
+      TouristAttraction.new(attraction)
+    end
+  end
 end
