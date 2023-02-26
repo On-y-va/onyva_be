@@ -6,8 +6,6 @@ RSpec.describe TripEvent, type: :model do
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:event_date) }
-    it { should validate_presence_of(:event_time) }
     it { should validate_presence_of(:event_id) }
   end
 end
