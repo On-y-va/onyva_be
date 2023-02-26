@@ -16,7 +16,9 @@ class Api::V1::TripsController < ApplicationController
       @restaurants = CityFacade.get_restaurant_info(city_info.place_id)
       @place_id = city_info.place_id
       trip = Trip.create!(trip_params)
-      # require 'pry'; binding.pry
+      @restaurants.each do |restaurant|
+        TripEvent.create!(trip_id: trip.id, event_id: restaurant.place_id, name: restaurant.name, address: restaurant.address)
+      end
       render json: TripSerializer.new(trip), status: :created
     else
       render json: ErrorSerializer.no_matches_found
