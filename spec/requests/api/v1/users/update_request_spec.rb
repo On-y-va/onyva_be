@@ -5,6 +5,7 @@ describe 'Users update API' do
     context 'if the user is successfully updated' do
       it 'updates the user' do
         user = create(:user)
+
         previous_user_name = User.last.first_name
         user_params = { first_name: "Jeff" }
         headers = { "CONTENT_TYPE" => "application/json" }

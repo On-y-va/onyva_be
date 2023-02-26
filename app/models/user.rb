@@ -3,9 +3,9 @@ class User < ApplicationRecord
   has_many :trip_attendees, dependent: :destroy
   has_many :trips, through: :trip_attendees, dependent: :destroy
 
-  validates_presence_of :first_name, :last_name, :email, :password_digest
+  validates_presence_of :first_name, :last_name, :email, :google_uid
   validates_uniqueness_of :email
-  has_secure_password
+  validates_uniqueness_of :google_uid
 
   def self.find_user_by_email(email)
     self.where("email = ?", "#{email}")

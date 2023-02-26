@@ -41,9 +41,6 @@ describe 'Find all trips for a user API' do
         
         expect(data).to have_key(:email)
         expect(data[:last_name]).to be_a(String)
-
-        expect(data).to have_key(:password_digest)
-        expect(data[:last_name]).to be_a(String)
       end
 
       xit 'can return the users trip by status accepted' do
@@ -80,9 +77,6 @@ require 'pry'; binding.pry
         
         expect(data).to have_key(:email)
         expect(data[:last_name]).to be_a(String)
-
-        expect(data).to have_key(:password_digest)
-        expect(data[:last_name]).to be_a(String)
       end
 
       xit 'can return the users trip by status declined' do
@@ -118,9 +112,6 @@ require 'pry'; binding.pry
         expect(data[:last_name]).to be_a(String)
         
         expect(data).to have_key(:email)
-        expect(data[:last_name]).to be_a(String)
-
-        expect(data).to have_key(:password_digest)
         expect(data[:last_name]).to be_a(String)
       end
     end
