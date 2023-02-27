@@ -12,14 +12,14 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:last_name) }
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email) }
-    it { should validate_uniqueness_of(:google_uid) }
+    it { should validate_uniqueness_of(:uid) }
   end
 
   describe '#find_user_by_email' do
     it 'returns a user by the email' do
-      user = User.create!(first_name: "Bob", last_name: "Evans", phone_number: "1234567", email: "be@gmail.com", google_uid: "b123")
-      user2 = User.create!(first_name: "Alex", last_name: "Barrett", phone_number: "1234567", email: "abe@gmail.com", google_uid: "1t32t33")
-      user3 = User.create!(first_name: "Alex", last_name: "Barrett", phone_number: "1234567", email: "e@gmail.com", google_uid: "131t")
+      user = User.create!(first_name: "Bob", last_name: "Evans", phone_number: "1234567", email: "be@gmail.com", uid: "b123")
+      user2 = User.create!(first_name: "Alex", last_name: "Barrett", phone_number: "1234567", email: "abe@gmail.com", uid: "1t32t33")
+      user3 = User.create!(first_name: "Alex", last_name: "Barrett", phone_number: "1234567", email: "e@gmail.com", uid: "131t")
 
       expect(User.find_user_by_email("be@gmail.com")).to eq(user)
       expect(User.find_user_by_email("e@gmail.com")).to_not eq(user)
@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
   describe '#find_user_by_flight' do
     it 'returns the user from flight' do 
       t1 = Trip.create!(name: "Test Trip", city: "London", country: "United States", postcode: "1234", start_date: "1", end_date: "2")
-      u1 = User.create!(first_name: "M", last_name: "M", phone_number: "1234", email: "asdfasdf@asdf.com", google_uid: "1hraha3t2gw")
+      u1 = User.create!(first_name: "M", last_name: "M", phone_number: "1234", email: "asdfasdf@asdf.com", uid: "1hraha3t2gw")
       ta1 = TripAttendee.create!(user_id: u1.id, trip_id: t1.id)
       f1 = Flight.create!(user_id: u1.id, airline_code: "SW", flight_number: "1", date: DateTime.new(2012, 8, 29, 22, 35, 0))
 

@@ -6,7 +6,7 @@ describe 'Users search API' do
       it 'can get a user by email' do
         create_list(:user, 4)
 
-        user = User.create!(first_name: "Bob", last_name: "Evans", phone_number: "1234567", email: "be@gmail.com", google_uid: "1234")
+        user = User.create!(first_name: "Bob", last_name: "Evans", phone_number: "1234567", email: "be@gmail.com", uid: "1234")
 
         get "/api/v1/users/find", params: {email: user.email}
 

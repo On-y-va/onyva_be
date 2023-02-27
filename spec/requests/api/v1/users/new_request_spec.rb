@@ -9,7 +9,7 @@ describe 'Users create API' do
                         last_name: 'Potter',
                         email: 'harry.potter@hogwarts.com',
                         phone_number: '123456789',
-                        google_uid: "gehg490ga1no"
+                        uid: "gehg490ga1no"
                       })
 
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -32,7 +32,7 @@ describe 'Users create API' do
                         last_name: 'Potter',
                         email: 'harry.potter@hogwarts.com',
                         phone_number: '123456789',
-                        google_uid: "gehg490ga1no"
+                        uid: "gehg490ga1no"
                       })
 
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -51,7 +51,7 @@ describe 'Users create API' do
                         last_name: '',
                         email: 'harry.potter@hogwarts.com',
                         phone_number: '123456789',
-                        google_uid: "gehg490ga1no"
+                        uid: "gehg490ga1no"
                       })
 
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -70,7 +70,7 @@ describe 'Users create API' do
                         last_name: 'Potter',
                         email: '',
                         phone_number: '123456789',
-                        google_uid: "gehg490ga1no"
+                        uid: "gehg490ga1no"
                       })
 
         headers = { "CONTENT_TYPE" => "application/json" }
