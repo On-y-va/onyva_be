@@ -1,6 +1,6 @@
 class CityFacade
-  def self.get_city_info(city, country, postcode)
-    city_info = TripEventsService.get_city(city, country, postcode)
+  def self.get_city_info(location_params)
+    city_info = TripEventsService.get_city(*location_params)
     city = city_info[:features][0]
     City.new(city)
   end

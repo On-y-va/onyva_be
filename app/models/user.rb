@@ -17,7 +17,6 @@ class User < ApplicationRecord
   end
 
   def find_user_trip_by_status(trip_status)
-    # require 'pry'; binding.pry
     self.trip_attendees.where(status: "#{trip_status}")
   end
 end
