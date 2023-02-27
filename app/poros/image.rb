@@ -6,4 +6,8 @@ class Image
     @secret = data[:secret]
     @server = data[:server]
   end
+
+  def url
+    "https://live.staticflickr.com/#{@server}/#{@id}_#{@secret}_w.jpg"
+  end
 end
