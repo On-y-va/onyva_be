@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'TripAttndee Update API' do
   describe 'PATCH /users/:user_id/trips/:trip_id' do
-    context 'if a user & trip exists' do
-      xit 'can update a trip attendee' do
+    context 'happy path' do
+      it 'can update a trip attendee' do
         user = create(:user)
         trip = create(:trip)
         trip_attendee = create(:trip_attendee, user_id: user.id, trip_id: trip.id)
@@ -12,7 +12,7 @@ describe 'TripAttndee Update API' do
         patch "/api/v1/users/#{user.id}/trips/#{trip.id}"
         
         expect(response).to be_successful
-        expect(trip_attendee.status).to eq("accepted")
+        expect(TripAttendee.last.status).to eq("accepted")
       end
     end
 
@@ -29,7 +29,7 @@ describe 'TripAttndee Update API' do
         expect(response).to be_successful
       end
 
-    context 'if the trip does not exist' do
+    context 'sad path' do
       xit 'sends an error message' do
         trip = create(:trip)
 
