@@ -1,4 +1,4 @@
-class Api::V1::Users::TripsController < ApplicationController
+class Api::V1::Users::UserTripsController < ApplicationController
   def index
     render json: TripSerializer.new(User.find(params[:user_id]).trips)
   end
@@ -13,20 +13,22 @@ class Api::V1::Users::TripsController < ApplicationController
     if params[:trip][:city] != "" && params[:trip][:country] != "" && params[:trip][:postcode] != ""
       city_info = CityFacade.get_city_info(params[:trip][:city], params[:trip][:country], params[:trip][:postcode])
       @restaurants = CityFacade.get_restaurant_info(city_info.place_id)
-      # @attractions = CityFacade.get_tourist_attraction_info(city_info.place_id)
+      @attractions = CityFacade.get_tourist_attraction_info(city_info.place_id)
       @place_id = city_info.place_id
       image = FlickrFacade.get_city_image(params[:trip][:city], params[:trip][:country])
       @url = image.url
       trip = Trip.create!(user_trip_params)
       @restaurants.each do |restaurant|
-        TripEvent.create!(trip_id: trip.id, event_id: restaurant.place_id, name: restaurant.name, address: restaurant.address)
+        Event.create!(trip_id: trip.id, event_id: restaurant.place_id, name: restaurant.name, address: restaurant.address)
+      end
+      @attractions.each do |attraction|
+        Event.create!(trip_id: trip.id, event_id: attraction.place_id, name: attraction.name, address: attraction.address)
       end
       user = User.find(params[:user_id])
+      # user = User.find(1)
       TripAttendee.create!(user_id: user.id, trip_id: trip.id)
         
-      # @attractions.each do |attraction|
-      #   Attraction.create!(trip_id: trip.id, event_id: attraction.place_id, name: attraction.name, address: attraction.address)
-      # end
+      # require 'pry'; binding.pry
       render json: TripSerializer.new(trip), status: :created
     else
       render json: ErrorSerializer.no_matches_found

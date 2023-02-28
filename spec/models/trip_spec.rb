@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Trip, type: :model do
   describe 'relationships' do
-    it { should have_many(:trip_events) }
+    it { should have_many(:events) }
     it { should have_many(:trip_attendees) }  
     it { should have_many(:flights).through(:users)}
     it { should have_many(:users).through(:trip_attendees) }

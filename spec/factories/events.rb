@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :trip_event do
+  factory :event do
     # t.boolean "confirmed", default: true
     event_date {Faker::Date.forward(days: 23)}
     event_time {Faker::Time.forward(days: 45 ) }

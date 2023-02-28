@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.geoapify.com/v1/geocode/search?apiKey=<geoapify_key>&countrySpain&lang=en&limit=1&postcode=08001&text=Barcelona&type=city
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 28 Feb 2023 02:33:44 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Api-Version:
+      - '1.0'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - accept, accept-language, content-language, access-control-max-age, access-control-allow-headers,
+        access-control-allow-methods, access-control-allow-origin, allow, api-version,
+        cf-ray, content-encoding, content-type, date, expect-ct, server, status, vary,
+        cache-control, etag, last-modified, expires, host, cf-iplatitude, cf-iplongitude,
+        accept-encoding, x-forwarded-for, x-forwarded-proto, cf-visitor, user-agent,
+        cf-connecting-ip, cf-pseudo-ipv4, cdn-loop, cf-ipcity, cf-ipcontinent, cf-ipcountry,
+        x-forwarded-port
+      Access-Control-Allow-Methods:
+      - GET, POST, DELETE, OPTIONS, PUT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Cache-Control:
+      - private, max-age=0, no-cache
+      Content-Disposition:
+      - inline; filename=response.geojson
+      Cf-Cache-Status:
+      - DYNAMIC
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=7A4RmfnhfC%2BVRecntvufMamjiiq0wyDrUlN0j5oQNF%2FoXPZ8gOdgEtlNziDjncHdrUKLG4nogccGhoSpDaEScLEA%2Bsd9ybgCbguemktiTEcdThYkgiO5PpBbc9yQLTywW1%2Bv6Y%2BAlQnw2%2BTszc4%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 7a05c1d0da17add1-ATL
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7ImRhdGFzb3VyY2UiOnsic291cmNlbmFtZSI6Im9wZW5zdHJlZXRtYXAiLCJhdHRyaWJ1dGlvbiI6IsKpIE9wZW5TdHJlZXRNYXAgY29udHJpYnV0b3JzIiwibGljZW5zZSI6Ik9wZW4gRGF0YWJhc2UgTGljZW5zZSIsInVybCI6Imh0dHBzOi8vd3d3Lm9wZW5zdHJlZXRtYXAub3JnL2NvcHlyaWdodCJ9LCJjb3VudHJ5IjoiU3BhaW4iLCJjb3VudHJ5X2NvZGUiOiJlcyIsInN0YXRlIjoiQ2F0YWxvbmlhIiwic3RhdGVfZGlzdHJpY3QiOiJCYXJjZWxvbmEiLCJjb3VudHkiOiJCYXJjZWxvbsOocyIsImNpdHkiOiJCYXJjZWxvbmEiLCJwb3N0Y29kZSI6IjA4MDAxIiwibG9uIjoyLjE3NzQzMjIsImxhdCI6NDEuMzgyODkzOSwiZm9ybWF0dGVkIjoiMDgwMDEgQmFyY2Vsb25hLCBTcGFpbiIsImFkZHJlc3NfbGluZTEiOiIwODAwMSBCYXJjZWxvbmEiLCJhZGRyZXNzX2xpbmUyIjoiU3BhaW4iLCJjYXRlZ29yeSI6ImFkbWluaXN0cmF0aXZlIiwidGltZXpvbmUiOnsibmFtZSI6IkV1cm9wZS9NYWRyaWQiLCJvZmZzZXRfU1REIjoiKzAxOjAwIiwib2Zmc2V0X1NURF9zZWNvbmRzIjozNjAwLCJvZmZzZXRfRFNUIjoiKzAyOjAwIiwib2Zmc2V0X0RTVF9zZWNvbmRzIjo3MjAwLCJhYmJyZXZpYXRpb25fU1REIjoiQ0VUIiwiYWJicmV2aWF0aW9uX0RTVCI6IkNFU1QifSwicmVzdWx0X3R5cGUiOiJwb3N0Y29kZSIsInJhbmsiOnsiaW1wb3J0YW5jZSI6MC45NjM1NjQ5OTY5NTAzMTgyLCJwb3B1bGFyaXR5Ijo5Ljk5NTQ2NzEwNDU1MzEwNCwiY29uZmlkZW5jZSI6MSwiY29uZmlkZW5jZV9jaXR5X2xldmVsIjoxLCJtYXRjaF90eXBlIjoiZnVsbF9tYXRjaCJ9LCJwbGFjZV9pZCI6IjUxMDQwZmMyOTI2MTZiMDE0MDU5NDAyYmQ1YWEwMmIxNDQ0MGYwMDEwMWY5MDEyZTRmMDUwMDAwMDAwMDAwYzAwMjA3In0sImdlb21ldHJ5Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbMi4xNzc0MzIyLDQxLjM4Mjg5MzldfSwiYmJveCI6WzIuMDUyNDk3Nyw0MS4zMTcwMzUzLDIuMjI4MzU1NSw0MS40Njc5MTM1XX1dLCJxdWVyeSI6eyJ0ZXh0IjoiQmFyY2Vsb25hIiwicGFyc2VkIjp7InBvc3Rjb2RlIjoiMDgwMDEiLCJjaXR5IjoiYmFyY2Vsb25hIiwiZXhwZWN0ZWRfdHlwZSI6InBvc3Rjb2RlIn19fQ==
+  recorded_at: Tue, 28 Feb 2023 02:33:44 GMT
+recorded_with: VCR 6.1.0
