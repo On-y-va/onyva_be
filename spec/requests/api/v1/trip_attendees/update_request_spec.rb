@@ -16,19 +16,6 @@ describe 'TripAttndee Update API' do
       end
     end
 
-      xit 'can update a trip attendee' do
-
-        trip_attendees_1 = create(:trip_attendee)
-
-        expect(User.count).to eq(5)
-        expect(Trip.count).to eq(2)
-        expect(TripAttendee.count).to eq(6)
-
-        delete "/api/v1/users/#{trip_attendees_1.user_id}/trips/#{trip_attendees_1.trip.id}"
-
-        expect(response).to be_successful
-      end
-
     context 'sad path' do
       xit 'sends an error message' do
         trip = create(:trip)
