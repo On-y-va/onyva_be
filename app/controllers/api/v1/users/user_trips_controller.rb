@@ -19,16 +19,14 @@ class Api::V1::Users::UserTripsController < ApplicationController
       @url = image.url
       trip = Trip.create!(user_trip_params)
       @restaurants.each do |restaurant|
-        Event.create!(trip_id: trip.id, event_id: restaurant.place_id, name: restaurant.name, address: restaurant.address)
+        Event.create!(trip_id: trip.id, event_id: restaurant.place_id, name: restaurant.name, address: restaurant.address, category: 0)
       end
       @attractions.each do |attraction|
-        Event.create!(trip_id: trip.id, event_id: attraction.place_id, name: attraction.name, address: attraction.address)
+        Event.create!(trip_id: trip.id, event_id: attraction.place_id, name: attraction.name, address: attraction.address, category: 1)
       end
       user = User.find(params[:user_id])
-      # user = User.find(1)
       TripAttendee.create!(user_id: user.id, trip_id: trip.id)
         
-      # require 'pry'; binding.pry
       render json: TripSerializer.new(trip), status: :created
     else
       render json: ErrorSerializer.no_matches_found
