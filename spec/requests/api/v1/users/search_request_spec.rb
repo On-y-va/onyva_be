@@ -8,7 +8,7 @@ describe 'Users search API' do
 
         user = User.create!(first_name: "Bob", last_name: "Evans", phone_number: "1234567", email: "be@gmail.com", google_uid: "1234")
 
-        get "/api/v1/users/find", params: {email: user.email}
+        get "/api/v1/users/find", params: {google_uid: user.google_uid}
 
         user_response = JSON.parse(response.body, symbolize_names: true)
 
@@ -47,7 +47,7 @@ describe 'Users search API' do
       it 'returns an empty array' do
         create(:user)
 
-        get '/api/v1/users/find', params: {email: "b@email.com"}
+        get '/api/v1/users/find', params: {google_uid: ""}
 
         expect(response).to be_successful
         users = JSON.parse(response.body, symbolize_names: true)
