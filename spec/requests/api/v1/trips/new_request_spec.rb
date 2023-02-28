@@ -4,38 +4,51 @@ describe 'Trips create API' do
   describe 'POST /trips' do
     context 'when a trip is successfully created' do
       it 'can create a new trip' do
-        trip_params = ({
-                        name: "Girl's Trip",
-                        city: "Denver",
-                        country: "United States",
-                        postcode: '80020',
-                        start_date: "11/08/25",
-                        end_date: "11/30/25"
-                      })
+        expect(User.count).to eq(0)
+        
+        user = create(:user)
+        expect(User.count).to eq(1)
+
+        #TODO
+        # expect{User}.to change{User.count}.by 1
+        expect(Trip.count).to eq(0)
+        trip_params_from_fe = {
+          name: "Girl's Trip",
+          city: "Denver",
+          country: "United States",
+          postcode: '80020',
+          start_date: "11/08/25",
+          end_date: "11/20/25",
+          user_id: user.id
+        }
         headers = { "CONTENT_TYPE" => "application/json" }
-
-        post "/api/v1/trips", headers: headers, params: JSON.generate(trip: trip_params)
-
+        
+        post "/api/v1/trips", headers: headers, params: JSON.generate(trip: trip_params_from_fe)
+        
+        expect(Trip.count).to eq(1)
         new_trip = Trip.last
 
         expect(response).to be_successful
         expect(response.status).to eq(201)
-        expect(new_trip.name).to eq(trip_params[:name])
-        expect(new_trip.city).to eq(trip_params[:city])
-        expect(new_trip.country).to eq(trip_params[:country])
-        expect(new_trip.postcode).to eq(trip_params[:postcode])
+        expect(new_trip.name).to eq(trip_params_from_fe[:name])
+        expect(new_trip.city).to eq(trip_params_from_fe[:city])
+        expect(new_trip.country).to eq(trip_params_from_fe[:country])
+        expect(new_trip.postcode).to eq(trip_params_from_fe[:postcode])
       end
     end 
 
     context 'when a trip is not created' do
       it 'fails to create a trip when the name is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "",
                         city: "Denver",
                         country: "United States",
                         postcode: '80020',
                         start_date: "11/08/25",
-                        end_date: "11/30/25"
+                        end_date: "11/30/25",
+                        user_id: user.id
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -48,13 +61,16 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the city is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "Girl's Trip",
                         city: "",
                         country: "United States",
                         postcode: '80020',
                         start_date: "11/08/25",
-                        end_date: "11/30/25"
+                        end_date: "11/30/25",
+                        user_id: user.id
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -67,13 +83,15 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the country is left blank' do
+        user = create(:user)
         trip_params = ({
                         name: "Girl's Trip",
                         city: "Denver",
                         country: "",
                         postcode: '80020',
                         start_date: "11/08/25",
-                        end_date: "11/30/25"
+                        end_date: "11/30/25",
+                        user_id: user.id  
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -86,13 +104,16 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the postcode is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "Girl's Trip",
                         city: 'Denver',
                         country: 'United States',
                         postcode: '',
                         start_date: "11/08/25",
-                        end_date: "11/30/25"
+                        end_date: "11/30/25",
+                        user_id: user.id
                         })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -105,13 +126,15 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the start date is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "Girl's Trip",
                         city: 'Denver',
                         country: 'United States',
                         postcode: '80020',
                         start_date: " ",
-                        end_date: "11/30/25"
+                        user_id: user.id
                        })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -124,13 +147,16 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the end date is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "Girl's Trip",
                         city: 'Denver',
                         country: 'United States',
                         postcode: '80020',
                         start_date: "11/30/25",
-                        end_date: ""
+                        end_date: "",
+                        user_id: user.id
                        })
         headers = { "CONTENT_TYPE" => "application/json" }
 
