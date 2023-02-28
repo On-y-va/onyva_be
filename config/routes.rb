@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :trips, only: [:index, :show, :create, :update, :destroy] do
         resources :events, only: [:index], controller: 'trips/events'
         resources :flights, only: [:index, :create], controller: 'trips/flights'
+        resources :users, only: [:index], controller: 'trips/users'
       end
     end
   end
