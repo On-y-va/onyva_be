@@ -18,7 +18,7 @@ describe 'Trips create API' do
           country: "United States",
           postcode: '80020',
           start_date: "11/08/25",
-          end_date: "11/30/25",
+          end_date: "11/20/25",
           user_id: user.id
         }
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -39,13 +39,16 @@ describe 'Trips create API' do
 
     context 'when a trip is not created' do
       it 'fails to create a trip when the name is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "",
                         city: "Denver",
                         country: "United States",
                         postcode: '80020',
                         start_date: "11/08/25",
-                        end_date: "11/30/25"
+                        end_date: "11/30/25",
+                        user_id: user.id
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -58,13 +61,16 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the city is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "Girl's Trip",
                         city: "",
                         country: "United States",
                         postcode: '80020',
                         start_date: "11/08/25",
-                        end_date: "11/30/25"
+                        end_date: "11/30/25",
+                        user_id: user.id
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -77,13 +83,15 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the country is left blank' do
+        user = create(:user)
         trip_params = ({
                         name: "Girl's Trip",
                         city: "Denver",
                         country: "",
                         postcode: '80020',
                         start_date: "11/08/25",
-                        end_date: "11/30/25"
+                        end_date: "11/30/25",
+                        user_id: user.id  
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -96,13 +104,16 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the postcode is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "Girl's Trip",
                         city: 'Denver',
                         country: 'United States',
                         postcode: '',
                         start_date: "11/08/25",
-                        end_date: "11/30/25"
+                        end_date: "11/30/25",
+                        user_id: user.id
                         })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -115,13 +126,15 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the start date is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "Girl's Trip",
                         city: 'Denver',
                         country: 'United States',
                         postcode: '80020',
                         start_date: " ",
-                        end_date: "11/30/25"
+                        user_id: user.id
                        })
         headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -134,13 +147,16 @@ describe 'Trips create API' do
       end
 
       it 'fails to create a trip when the end date is left blank' do
+        user = create(:user)
+
         trip_params = ({
                         name: "Girl's Trip",
                         city: 'Denver',
                         country: 'United States',
                         postcode: '80020',
                         start_date: "11/30/25",
-                        end_date: ""
+                        end_date: "",
+                        user_id: user.id
                        })
         headers = { "CONTENT_TYPE" => "application/json" }
 
