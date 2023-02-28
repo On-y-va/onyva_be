@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'TripAttndee Update API' do
+describe 'TripAttendee Update API' do
   describe 'PATCH /users/:user_id/trips/:trip_id' do
     context 'happy path' do
       it 'can update a trip attendee to accepted' do
@@ -17,8 +17,7 @@ describe 'TripAttndee Update API' do
     end
 
     context 'sad path' do
-      context 'returns and error if attendee doesnt exist' do
-        it 'returns an error with invalid input ' do
+      it 'returns an error if attendee doesnt exist' do
           patch "/api/v1/users/does_not_exist/trips/does_not_exist"
           body = JSON.parse(response.body, symbolize_names: true)
           
@@ -26,8 +25,6 @@ describe 'TripAttndee Update API' do
           expect(body[:error]).to be_a Array
           expect(body[:error].first[:status]).to eq("404")
           expect(body[:error].first[:title]).to eq("Couldn't find TripAttendee")
-          # expect(response_body[:error]).to match(/Couldn't find Trip with 'id'=#{Trip.last.id+1}/)
-        end
       end
     end
   end

@@ -55,7 +55,7 @@ describe 'GET /users/:id/trips' do
         
         expect(response.status).to eq(404)
         expect(trips_data).to have_key(:error)
-        expect(trips_data[:error]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
+        expect(trips_data[:error].first[:title]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
       end
     end
   end

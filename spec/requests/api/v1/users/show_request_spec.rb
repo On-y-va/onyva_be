@@ -52,7 +52,7 @@ describe 'Users show API' do
         expect(response.status).to eq(404)
         expect(user).to have_key(:error)
        
-        expect(user[:error]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
+        expect(user[:error].first[:title]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
       end
     end
   end

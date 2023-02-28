@@ -141,7 +141,7 @@ describe 'Find all trips for a user API' do
         expect(response).to_not be_successful 
         expect(response.status).to eq(404)
         expect(user_trip_response).to have_key(:error)
-        expect(user_trip_response[:error]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
+        expect(user_trip_response[:error].first[:title]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
       end
     end
   end

@@ -32,6 +32,7 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def update
+    
     trip = Trip.find(params[:id])
     trip.update!(trip_params)
     render json: TripSerializer.new(trip)
