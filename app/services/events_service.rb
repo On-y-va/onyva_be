@@ -1,4 +1,4 @@
-class TripEventsService
+class EventsService
   def self.get_city(city, country, postcode)
     response = conn.get("/v1/geocode/search?text=#{city}&country#{country}&postcode=#{postcode}&lang=en&limit=1&type=city&apiKey=#{ENV['GEOAPIFY_KEY']}")
     JSON.parse(response.body, symbolize_names: true)

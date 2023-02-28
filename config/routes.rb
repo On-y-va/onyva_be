@@ -5,10 +5,10 @@ Rails.application.routes.draw do
       get '/users/:id/trips/find_all', to: 'users/trips/find_all#index'
 
       resources :users, only: [:index, :show, :create, :update, :destroy] do
-        resources :trips, only: [:index, :update, :create], controller: 'users/trips'
+        resources :trips, only: [:index, :update, :create], controller: 'users/user_trips'
       end
       resources :trips, only: [:index, :show, :create, :update, :destroy] do
-        resources :trip_events, only: [:index], controller: 'trips/trip_events'
+        resources :events, only: [:index], controller: 'trips/events'
         resources :flights, only: [:index, :create], controller: 'trips/flights'
       end
     end

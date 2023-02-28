@@ -5,7 +5,8 @@ class Api::V1::TripsController < ApplicationController
 
   def show
     trip = Trip.find(params[:id])
-    options = {include: [:trip_events]} 
+    options = {include: [:events]}
+    # require 'pry'; binding.pry
     render json: TripSerializer.new(trip, options)
   end
   
