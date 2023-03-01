@@ -32,6 +32,11 @@ class Api::V1::Users::UserTripsController < ApplicationController
     end
   end
 
+  def destroy
+    invite = TripAttendee.find_by!(user_id: params[:user_id], trip_id: params[:id])
+    invite.destroy
+  end
+
   private
 
   def user_trip_params

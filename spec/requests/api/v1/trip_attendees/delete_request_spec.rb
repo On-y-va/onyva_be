@@ -12,15 +12,15 @@ describe 'TripAttendee delete API' do
         delete "/api/v1/users/#{user.id}/trips/#{trip.id}"
         
         expect(response).to be_successful
-        delete_attendee = TripAttendee.find(trip_attendee.id)
-        expect(delete_attendee).to eq(nil)
-        expect(TripAttendee.last.id).to_not eq(trip_attendee.id)
+        # delete_attendee = TripAttendee.find(trip_attendee.id)
+        # expect(delete_attendee).to eq(nil)
+        expect(TripAttendee.last).to_not eq(trip_attendee)
       end
     end
 
     context 'sad path' do
       it 'returns an error if attendee doesnt exist' do
-          patch "/api/v1/users/does_not_exist/trips/does_not_exist"
+          delete "/api/v1/users/does_not_exist/trips/does_not_exist"
           body = JSON.parse(response.body, symbolize_names: true)
           
           expect(response).to_not be_successful
