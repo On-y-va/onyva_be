@@ -12,6 +12,7 @@ describe 'TripAttendee Update API' do
         patch "/api/v1/users/#{user.id}/trips/#{trip.id}"
         
         expect(response).to be_successful
+
         expect(TripAttendee.last.status).to eq("accepted")
       end
     end
