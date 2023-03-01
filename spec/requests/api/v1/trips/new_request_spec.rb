@@ -167,6 +167,28 @@ describe 'Trips create API' do
         expect(response.status).to be(400)
         # expect(response_body[:error]).to eq("Validation failed: End date can't be blank")
       end
+      
+      it 'fails to create a trip when the end date is left blank' do
+        user = create(:user)
+
+        trip_params = ({
+                        name: "Girl's Trip",
+                        city: 'Denver',
+                        country: 'United States',
+                        postcode: '80020',
+                        start_date: "11/30/25",
+                        end_date: "",
+                        user_id: user.id
+                       })
+        headers = { "CONTENT_TYPE" => "application/json" }
+
+        post "/api/v1/trips", headers: headers, params: JSON.generate(trip: trip_params)
+        response_body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to_not be_successful
+        expect(response.status).to be(400)
+        # expect(response_body[:error]).to eq("Validation failed: End date can't be blank")
+      end
     end
   end
 end
