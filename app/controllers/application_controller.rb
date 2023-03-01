@@ -7,6 +7,10 @@ class ApplicationController < ActionController::API
   end
 
   def render_invalid_record(exception)
-    render json: { error: exception.message }, status: 400
+    render json: { error: [
+                            title: exception.message,
+                            status: '400'
+                            ] 
+                        }, status: 400
   end
 end
