@@ -12,8 +12,6 @@ describe 'TripAttendee delete API' do
         delete "/api/v1/users/#{user.id}/trips/#{trip.id}"
         
         expect(response).to be_successful
-        # delete_attendee = TripAttendee.find(trip_attendee.id)
-        # expect(delete_attendee).to eq(nil)
         expect(TripAttendee.last).to_not eq(trip_attendee)
       end
     end
