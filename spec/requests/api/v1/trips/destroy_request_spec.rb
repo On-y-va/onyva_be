@@ -41,7 +41,7 @@ describe 'Trips Delete API' do
 
         expect(response).to_not be_successful
         expect(response.status).to eq(404)
-        expect(response_body[:error]).to match(/Couldn't find Trip with 'id'=#{Trip.last.id+1}/)
+        expect(response_body[:error].first[:title]).to match(/Couldn't find Trip with 'id'=#{Trip.last.id+1}/)
         expect(Trip.count).to eq(1)
       end
     end

@@ -45,7 +45,7 @@ describe 'Trips show API' do
         expect(response.status).to eq(404)
         expect(trip).to have_key(:error)
 
-        expect(trip[:error]).to match(/Couldn't find Trip with 'id'=#{Trip.last.id+1}/)
+        expect(trip[:error].first[:title]).to match(/Couldn't find Trip with 'id'=#{Trip.last.id+1}/)
       end
     end
   end

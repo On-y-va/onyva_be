@@ -26,7 +26,7 @@ describe 'Users Delete API' do
        
         expect(response).to_not be_successful
         expect(response.status).to eq(404)
-        expect(response_body[:error]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
+        expect(response_body[:error].first[:title]).to match(/Couldn't find User with 'id'=#{User.last.id+1}/)
         expect(User.count).to eq(1)
       end
     end

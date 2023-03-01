@@ -4,9 +4,8 @@ class Api::V1::Users::UserTripsController < ApplicationController
   end
   
   def update
-    trip = User.find(params[:user_id]).trips.find(params[:id])
-    trip.update!(user_trip_params)
-    render json: TripSerializer.new(trip)
+    invite = TripAttendee.find_by!(user_id: params[:user_id], trip_id: params[:id])
+    invite.update!(status: "accepted")
   end
 
   def create
@@ -31,6 +30,11 @@ class Api::V1::Users::UserTripsController < ApplicationController
     else
       render json: ErrorSerializer.no_matches_found
     end
+  end
+
+  def destroy
+    invite = TripAttendee.find_by!(user_id: params[:user_id], trip_id: params[:id])
+    invite.destroy!
   end
 
   private

@@ -1,25 +1,24 @@
 require 'rails_helper'
 
-describe 'TripAttendee Update API' do
-  describe 'PATCH /users/:user_id/trips/:trip_id' do
+describe 'TripAttendee delete API' do
+  describe 'DELETE /users/:user_id/trips/:trip_id' do
     context 'happy path' do
-      it 'can update a trip attendee to accepted' do
+      it 'deletes a trip attendee' do
         user = create(:user)
         trip = create(:trip)
         trip_attendee = create(:trip_attendee, user_id: user.id, trip_id: trip.id)
 
         expect(trip_attendee.status).to eq("pending")
-        patch "/api/v1/users/#{user.id}/trips/#{trip.id}"
+        delete "/api/v1/users/#{user.id}/trips/#{trip.id}"
         
         expect(response).to be_successful
-
-        expect(TripAttendee.last.status).to eq("accepted")
+        expect(TripAttendee.last).to_not eq(trip_attendee)
       end
     end
 
     context 'sad path' do
       it 'returns an error if attendee doesnt exist' do
-          patch "/api/v1/users/does_not_exist/trips/does_not_exist"
+          delete "/api/v1/users/does_not_exist/trips/does_not_exist"
           body = JSON.parse(response.body, symbolize_names: true)
           
           expect(response).to_not be_successful

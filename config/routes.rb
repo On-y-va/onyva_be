@@ -5,8 +5,9 @@ Rails.application.routes.draw do
       get '/users/:id/trips/find_all', to: 'users/trips/find_all#index'
 
       resources :users, only: [:index, :show, :create, :update, :destroy] do
-        resources :trips, only: [:index, :update], controller: 'users/user_trips'
+        resources :trips, only: [:index, :update, :destroy, :create], controller: 'users/user_trips'
       end
+      
       resources :trips, only: [:index, :show, :create, :update, :destroy] do
         resources :events, only: [:index], controller: 'trips/events'
         resources :flights, only: [:index, :create], controller: 'trips/flights'
