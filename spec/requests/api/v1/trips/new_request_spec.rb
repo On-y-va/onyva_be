@@ -163,7 +163,7 @@ describe 'Trips create API' do
 
         expect(response).to_not be_successful
         expect(response.status).to be(400)
-        expect(response_body[:error][0][:title]).to eq("Validation failed: End date can't be blank")
+        expect(response_body[:error][0][:title]).to eq("Validation failed: End date can't be blank, End date must be after start date")
       end
       
       it 'fails to create a trip when the end date is before the start date' do
@@ -185,7 +185,7 @@ describe 'Trips create API' do
 
         expect(response).to_not be_successful
         expect(response.status).to be(400)
-        expect(response_body[:error][0][:title]).to eq("Validation failed: End date can't be blank")
+        expect(response_body[:error][0][:title]).to eq("Validation failed: End date must be after start date")
       end
     end
   end
