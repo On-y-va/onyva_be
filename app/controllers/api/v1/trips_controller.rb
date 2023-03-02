@@ -10,9 +10,9 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def location_info
-    city_info = CityFacade.get_city_info(*location_params.values)
+    @city_info = CityFacade.get_city_info(*location_params.values)
 
-    @place_id = city_info.place_id
+    @place_id = @city_info.place_id
     
     image = FlickrFacade.get_city_image(params[:trip][:city], params[:trip][:country])
     @url = image.url
@@ -20,23 +20,31 @@ class Api::V1::TripsController < ApplicationController
   end
   
   def create_events
-    restaurants = CityFacade.get_restaurant_info(city_info.place_id)
+    restaurants = CityFacade.get_restaurant_info(@city_info.place_id)
     restaurants.each do |restaurant|
-      Event.create!(trip_id: trip.id, event_id: restaurant.place_id, name: restaurant.name, address: restaurant.address, category: 0)
+      Event.create!(trip_id: @trip.id, 
+                    event_id: restaurant.place_id, 
+                    name: restaurant.name, 
+                    address: restaurant.address, 
+                    category: 0)
     end
 
-    attractions = CityFacade.get_tourist_attraction_info(city_info.place_id)
+    attractions = CityFacade.get_tourist_attraction_info(@city_info.place_id)
     attractions.each do |attraction|
-      Event.create!(trip_id: trip.id, event_id: attraction.place_id, name: attraction.name, address: attraction.address, category: 1)
+      Event.create!(trip_id: @trip.id, 
+                    event_id: attraction.place_id, 
+                    name: attraction.name, 
+                    address: attraction.address, 
+                    category: 1)
     end
 
   end
   def create
-    require 'pry'; binding.pry
     user = User.find(params[:trip][:user_id])
-    trip = user.trips.create!(trip_params)
-    trip.location_info
-    render json: TripSerializer.new(trip), status: :created
+    @trip = user.trips.create!(trip_params)
+    location_info
+    @trip.update!(place_id: @place_id, image_url: @url)
+    render json: TripSerializer.new(@trip), status: :created
   end
 
   def update
@@ -53,7 +61,18 @@ class Api::V1::TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :city, :country, :postcode, :start_date, :end_date).merge(place_id: @place_id, image_url: @url)
+    params.require(:trip).permit(
+                                  :name, 
+                                  :city, 
+                                  :country, 
+                                  :postcode, 
+                                  :start_date, 
+                                  :end_date
+                                 ).merge(
+                                          place_id: @place_id, 
+                                          image_url: @url
+                                          )
+
   end
 
   def location_params
