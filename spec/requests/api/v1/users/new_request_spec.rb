@@ -42,7 +42,7 @@ describe 'Users create API' do
 
         expect(response).to_not be_successful
         expect(response.status).to be(400)
-        expect(response_body[:error]).to eq("Validation failed: First name can't be blank")
+        expect(response_body[:error].first[:title]).to eq("Validation failed: First name can't be blank")
       end
 
       it 'fails to create a user when the last name is left blank' do
@@ -61,7 +61,7 @@ describe 'Users create API' do
 
         expect(response).to_not be_successful
         expect(response.status).to be(400)
-        expect(response_body[:error]).to eq("Validation failed: Last name can't be blank")
+        expect(response_body[:error].first[:title]).to eq("Validation failed: Last name can't be blank")
       end
 
       it 'fails to create a user when the email is left blank' do
@@ -80,7 +80,7 @@ describe 'Users create API' do
 
         expect(response).to_not be_successful
         expect(response.status).to be(400)
-        expect(response_body[:error]).to eq("Validation failed: Email can't be blank")
+        expect(response_body[:error].first[:title]).to eq("Validation failed: Email can't be blank")
       end
     end
   end

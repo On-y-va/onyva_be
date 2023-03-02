@@ -1,29 +1,53 @@
 require 'rails_helper'
 
 RSpec.describe CityFacade do
-  it 'can return the city, country, postcode, and place id', :vcr do
+
+  it 'can return the place id', :vcr do
     city = CityFacade.get_city_info("Barcelona", "Spain", "08001")
 
-    expect(city).to be_a(City)
+    expect(city).to be_a(String)
   end
 
-  it 'can return a restaurant with its name and address', :vcr do
-    city = CityFacade.get_city_info("Barcelona", "Spain", "08001")
-    place_id = city.place_id
-  
-    restaurants = CityFacade.get_restaurant_info(place_id)
+  it 'creates restaurants', :vcr do
+    events = Event.all.count 
+    user = create(:user)
+    expect(User.count).to eq(1)
 
-    expect(restaurants).to be_an(Array)
-    expect(restaurants[0]).to be_a(Restaurant)
+    expect(Trip.count).to eq(0)
+    trip_params = {
+      name: "Girl's Trip",
+      city: "Denver",
+      country: "United States",
+      postcode: '80020',
+      start_date: "11/08/25",
+      end_date: "11/20/25"
+    }
+    Trip.create!(trip_params)
+    place_id = CityFacade.get_city_info("Barcelona", "Spain", "08001")
+
+    restaurants = CityFacade.get_restaurant_info(place_id, Trip.last.id)
+    expect(Event.all.count > events).to be(true)
   end
 
-  it 'can return a tourist attraction with its name and address' do
-    city = CityFacade.get_city_info("Barcelona", "Spain", "08001")
-    place_id = city.place_id
+  it 'creates restaurants' do
+    events = Event.all.count 
+    user = create(:user)
+    expect(User.count).to eq(1)
 
-    tourist_attractions = CityFacade.get_tourist_attraction_info(place_id)
+    expect(Trip.count).to eq(0)
+    trip_params = {
+      name: "Girl's Trip",
+      city: "Denver",
+      country: "United States",
+      postcode: '80020',
+      start_date: "11/08/25",
+      end_date: "11/20/25"
+    }
+    Trip.create!(trip_params)
+    place_id = CityFacade.get_city_info("Barcelona", "Spain", "08001")
 
-    expect(tourist_attractions).to be_an(Array)
-    expect(tourist_attractions[0]).to be_an(TouristAttraction)
+    tourist_attractions = CityFacade.get_tourist_attraction_info(place_id, Trip.last.id)
+
+    expect(Event.all.count > events).to be(true)
   end
 end
