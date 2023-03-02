@@ -1,8 +1,7 @@
 class CityFacade
   def self.get_city_info(city, country, postcode)
     city_info = EventsService.get_city(city, country, postcode)
-    city = city_info[:features][0]
-    City.new(city)
+    city_info[:features].first[:properties][:place_id]
   end
 
   def self.get_restaurant_info(place_id, trip_id)
