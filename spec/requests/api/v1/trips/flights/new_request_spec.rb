@@ -5,7 +5,7 @@ describe 'Flights create API' do
     context 'when a flight is successfully created' do
       it 'can create a new flight' do
         user = create(:user)
-        trip = create(:trip)
+        trip = create(:trip, start_date: Time.now, end_date: Time.now)
 
         flight_params = ({
           user_email: user.email,

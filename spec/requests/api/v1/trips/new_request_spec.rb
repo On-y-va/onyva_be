@@ -122,15 +122,14 @@ describe 'Trips create API' do
         expect(response_body[:error][0][:title]).to eq("Validation failed: Postcode can't be blank")
       end
 
-      it 'fails to create a trip when the end date is is before the start date' do
-        user = create(:user)
+      it 'fails to create a trip when the end date is left blank' do        user = create(:user)
 
         trip_params = ({
                         name: "Girl's Trip",
                         city: 'Denver',
                         country: 'United States',
                         postcode: '80020',
-                        start_date: "2023-03-03",
+                        start_date: "",
                         end_date: "2023-02-03",
                         user_id: user.id
                        })

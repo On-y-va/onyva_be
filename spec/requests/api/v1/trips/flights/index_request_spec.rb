@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Trip Flights Index API' do
   describe '/GET /flights/:id/trips' do
     it 'can get all flights' do
-      t1 = create(:trip)
+      t1 = create(:trip, start_date: Time.now, end_date: Time.now)
 
       u1 = create(:user)
       ta1 = create(:trip_attendee, user_id: u1.id, trip_id: t1.id)

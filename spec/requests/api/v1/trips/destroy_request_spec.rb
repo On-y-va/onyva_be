@@ -10,8 +10,8 @@ describe 'Trips Delete API' do
         user_4 = create(:user)
         user_5 = create(:user)
 
-        trip_1 = create(:trip)
-        trip_2 = create(:trip)
+        trip_1 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_2 = create(:trip, start_date: Time.now, end_date: Time.now)
         
         trip_attendees_1 = create(:trip_attendee, user_id: user_1.id, trip_id: trip_1.id)
         trip_attendees_1 = create(:trip_attendee, user_id: user_2.id, trip_id: trip_1.id)
@@ -34,7 +34,7 @@ describe 'Trips Delete API' do
 
     context 'if the trip does not exist' do
       it 'sends an error message' do
-        trip = create(:trip)
+        trip = create(:trip, start_date: Time.now, end_date: Time.now)
 
         delete "/api/v1/trips/#{Trip.last.id+1}"
         response_body = JSON.parse(response.body, symbolize_names: true)
