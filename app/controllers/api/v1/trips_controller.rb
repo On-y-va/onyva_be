@@ -1,5 +1,5 @@
 class Api::V1::TripsController < ApplicationController
-
+  include TripHelper
   def show
     trip = Trip.find(params[:id])
     options = {include: [:events]}
