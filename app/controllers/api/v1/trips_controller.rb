@@ -29,11 +29,8 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def update
-    # binding.pry
     trip = Trip.find(params[:id])
     trip.update!(trip_update_params)
-    image = FlickrFacade.get_city_image(params[:trip][:city], params[:trip][:country])
-    @url = image.url
     render json: TripSerializer.new(trip)
   end
 
