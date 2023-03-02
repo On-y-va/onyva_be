@@ -38,12 +38,7 @@ include TripHelper
                                   :country, 
                                   :postcode, 
                                   :start_date, 
-                                  :end_date
-                                 ).merge(
-                                          place_id: @place_id, 
-                                          image_url: @url
-                                          )
-
+                                  :end_date)
   end
 
   def location_params
