@@ -6,34 +6,22 @@ class CityFacade
   end
 
   def self.get_restaurant_info(place_id, trip_id)
-    restaurant_info = EventsService.get_restaurants(place_id)
-    restaurant_info[:features].map do |restaurant|
-      Event.create!(trip_id: trip_id,
-                    event_id:  restaurant[:properties][:place_id],
-                    name:  restaurant[:properties][:name],
-                    address:  restaurant[:properties][:address_line2],
-                    category: 0)
-    end
+    restaurants = EventsService.get_restaurants(place_id)[:features]
+    CityFacade.create_events(trip_id, restaurants, 0)
   end
-
+  
   def self.get_tourist_attraction_info(place_id, trip_id)
-    tourist_attraction_info = EventsService.get_tourist_attractions(place_id)
-    tourist_attraction_info[:features].map do |attraction|
-      Event.create!(trip_id: trip_id,
-                    event_id:  attraction[:properties][:place_id],
-                    name:  attraction[:properties][:name],
-                    address:  attraction[:properties][:address_line2],
-                    category: 1)
-    end
+    attractions = EventsService.get_tourist_attractions(place_id)[:features]
+    CityFacade.create_events(trip_id, attractions, 1)
   end
 
-  # def create_events(trip_id, events, category)
-  #  .map do |attraction|
-  #     Event.create!(trip_id: trip_id,
-  #                   event_id:  attraction[:properties][:place_id],
-  #                   name:  attraction[:properties][:name],
-  #                   address:  attraction[:properties][:address_line2],
-  #                   category: 1)
-  #   end 
-  # end
+  def self.create_events(trip_id, events, category)
+    events.map do |event|
+      Event.create!(trip_id: trip_id,
+                    event_id:  event[:properties][:place_id],
+                    name:  event[:properties][:name],
+                    address:  event[:properties][:address_line2],
+                    category: category)
+    end 
+  end
 end
