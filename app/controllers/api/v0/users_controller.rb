@@ -1,4 +1,7 @@
 class Api::V1::UsersController < ApplicationController
+  def index
+    render json: UserSerializer.new(User.all)
+  end
 
   def show
     render json: UserSerializer.new(User.find(params[:id]))
@@ -25,4 +28,4 @@ class Api::V1::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :google_uid, :emergency_contact_name, :emergency_contact_phone_number)
   end
-end
+e
