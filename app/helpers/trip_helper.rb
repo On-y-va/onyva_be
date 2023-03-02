@@ -8,22 +8,19 @@ module TripHelper
   end
 
   def create_events
-    restaurants = CityFacade.get_restaurant_info(@city_info.place_id)
-    restaurants.each do |restaurant|
+    events = CityFacade.get_restaurant_info(@city_info.place_id)
+    make_event_object(events, 0)
+    events = CityFacade.get_tourist_attraction_info(@city_info.place_id)
+    make_event_object(events, 1)
+  end
+  
+  def make_event_object(events, category)
+    events.each do |event|
       Event.create!(trip_id: @trip.id, 
-                    event_id: restaurant.place_id, 
-                    name: restaurant.name, 
-                    address: restaurant.address, 
-                    category: 0)
-    end
-
-    attractions = CityFacade.get_tourist_attraction_info(@city_info.place_id)
-    attractions.each do |attraction|
-      Event.create!(trip_id: @trip.id, 
-                    event_id: attraction.place_id, 
-                    name: attraction.name, 
-                    address: attraction.address, 
-                    category: 1)
+                    event_id: event.place_id, 
+                    name: event.name, 
+                    address: event.address, 
+                    category: category)
     end
   end
 end
