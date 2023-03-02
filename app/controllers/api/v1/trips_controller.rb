@@ -11,7 +11,7 @@ class Api::V1::TripsController < ApplicationController
   
   def create
     user = User.find(params[:trip][:user_id])
-    if params[:trip][:city] != "" && params[:trip][:country] != "" && params[:trip][:postcode] != ""
+    if params[:trip][:city] != "" && params[:trip][:country] != "" && params[:trip][:postcode] != "" && DateTime.parse(params[:trip][:start_date]) < DateTime.parse(params[:trip][:end_date])
       city_info = CityFacade.get_city_info(params[:trip][:city], params[:trip][:country], params[:trip][:postcode])
       @restaurants = CityFacade.get_restaurant_info(city_info.place_id)
       @attractions = CityFacade.get_tourist_attraction_info(city_info.place_id)
