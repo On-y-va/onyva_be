@@ -1,4 +1,7 @@
 class Api::V1::TripsController < ApplicationController
+  def index
+    render json: TripSerializer.new(Trip.all)
+  end
 
   def show
     trip = Trip.find(params[:id])
@@ -8,7 +11,7 @@ class Api::V1::TripsController < ApplicationController
   
   def create
     user = User.find(params[:trip][:user_id])
-    if params[:trip][:city] != "" && params[:trip][:country] != "" && params[:trip][:postcode] != "" && (DateTime.parse(params[:trip][:start_date]) < DateTime.parse(params[:trip][:end_date]))
+    if params[:trip][:city] != "" && params[:trip][:country] != "" && params[:trip][:postcode] != ""
       city_info = CityFacade.get_city_info(params[:trip][:city], params[:trip][:country], params[:trip][:postcode])
       @restaurants = CityFacade.get_restaurant_info(city_info.place_id)
       @attractions = CityFacade.get_tourist_attraction_info(city_info.place_id)
@@ -30,9 +33,7 @@ class Api::V1::TripsController < ApplicationController
 
   def update
     trip = Trip.find(params[:id])
-    trip.update!(trip_update_params)
-    image = FlickrFacade.get_city_image(params[:trip][:city], params[:trip][:country])
-    @url = image.url
+    trip.update!(trip_params)
     render json: TripSerializer.new(trip)
   end
 
@@ -42,10 +43,6 @@ class Api::V1::TripsController < ApplicationController
   end
 
   private
-
-  def trip_update_params
-    params.require(:trip).permit(:name, :city, :country, :postcode, :start_date, :end_date)
-  end
 
   def trip_params
     params.require(:trip).permit(:name, :city, :country, :postcode, :start_date, :end_date).merge(place_id: @place_id, image_url: @url)
