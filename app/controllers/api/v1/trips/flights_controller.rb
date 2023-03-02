@@ -8,11 +8,4 @@ class Api::V1::Trips::FlightsController < ApplicationController
     flight = Flight.create!({user_id: user.id, airline_code: params[:flight][:airline_code], flight_number: params[:flight][:flight_number], date: params[:flight][:date]})
     render json: FlightSerializer.new(flight), status: :created
   end
-
-
-  # private
-  
-  # def flight_params
-  #   params.require(:flight).permit(:user_id, :airline_code, :flight_number, :date)
-  # end
 end
