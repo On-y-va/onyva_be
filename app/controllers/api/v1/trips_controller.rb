@@ -12,10 +12,9 @@ include TripHelper
 
   def create
     user = User.find(params[:trip][:user_id])
-    @trip = user.trips.create!(trip_params)
-    location_info
-    @trip.update!(place_id: @place_id, image_url: @url)
-    render json: TripSerializer.new(@trip), status: :created
+    trip = user.trips.create!(trip_params)
+    location_info(trip)
+    render json: TripSerializer.new(trip), status: :created
   end
 
   def update
