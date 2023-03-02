@@ -1,8 +1,4 @@
 class Api::V1::TripsController < ApplicationController
-include TripHelper
-  def index
-    render json: TripSerializer.new(Trip.all)
-  end
 
   def show
     trip = Trip.find(params[:id])
@@ -19,7 +15,7 @@ include TripHelper
 
   def update
     trip = Trip.find(params[:id])
-    trip.update!(trip_params)
+    trip.update!(trip_update_params)
     render json: TripSerializer.new(trip)
   end
 
@@ -29,6 +25,10 @@ include TripHelper
   end
 
   private
+
+  def trip_update_params
+    params.require(:trip).permit(:name, :start_date, :end_date)
+  end
 
   def trip_params
     params.require(:trip).permit(

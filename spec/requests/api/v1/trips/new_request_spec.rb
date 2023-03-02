@@ -17,8 +17,8 @@ describe 'Trips create API' do
           city: "Denver",
           country: "United States",
           postcode: '80020',
-          start_date: "11/08/25",
-          end_date: "11/20/25",
+          start_date: "2023-03-03",
+          end_date: "2023-03-09",
           user_id: user.id
         }
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -46,8 +46,8 @@ describe 'Trips create API' do
                         city: "Denver",
                         country: "United States",
                         postcode: '80020',
-                        start_date: "11/08/25",
-                        end_date: "11/30/25",
+                        start_date: "2023-03-03",
+                        end_date: "2023-03-09",
                         user_id: user.id
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -68,8 +68,8 @@ describe 'Trips create API' do
                         city: "",
                         country: "United States",
                         postcode: '80020',
-                        start_date: "11/08/25",
-                        end_date: "11/30/25",
+                        start_date: "2023-03-03",
+                        end_date: "2023-03-09",
                         user_id: user.id
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -88,8 +88,8 @@ describe 'Trips create API' do
                         city: "Denver",
                         country: "",
                         postcode: '80020',
-                        start_date: "11/08/25",
-                        end_date: "11/30/25",
+                        start_date: "2023-03-03",
+                        end_date: "2023-03-09",
                         user_id: user.id  
                       })
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -109,8 +109,8 @@ describe 'Trips create API' do
                         city: 'Denver',
                         country: 'United States',
                         postcode: '',
-                        start_date: "11/08/25",
-                        end_date: "11/30/25",
+                        start_date: "2023-03-03",
+                        end_date: "2023-03-09",
                         user_id: user.id
                         })
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -122,7 +122,7 @@ describe 'Trips create API' do
         expect(response_body[:error][0][:title]).to eq("Validation failed: Postcode can't be blank")
       end
 
-      it 'fails to create a trip when the start date is left blank' do
+      it 'fails to create a trip when the end date is is before the start date' do
         user = create(:user)
 
         trip_params = ({
@@ -130,8 +130,8 @@ describe 'Trips create API' do
                         city: 'Denver',
                         country: 'United States',
                         postcode: '80020',
-                        start_date: " ",
-                        end_date: "12/12/23",
+                        start_date: "2023-03-03",
+                        end_date: "2023-02-03",
                         user_id: user.id
                        })
         headers = { "CONTENT_TYPE" => "application/json" }
