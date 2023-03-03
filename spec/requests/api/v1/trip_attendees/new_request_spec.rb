@@ -26,17 +26,5 @@ describe 'TripAttendee Create API' do
 
       end
     end
-
-    context 'sad path' do
-      xit 'returns an error if attendee doesnt exist' do
-          patch "/api/v1/users/does_not_exist/trips/does_not_exist"
-          body = JSON.parse(response.body, symbolize_names: true)
-          
-          expect(response).to_not be_successful
-          expect(body[:error]).to be_a Array
-          expect(body[:error].first[:status]).to eq("404")
-          expect(body[:error].first[:title]).to eq("Couldn't find TripAttendee")
-      end
-    end
   end
 end

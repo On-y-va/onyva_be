@@ -1,4 +1,4 @@
-class Api::V1::Trip::UsersController < ApplicationController
+class Api::V1::Trips::UsersController < ApplicationController
   def index
     trip = Trip.find(params[:trip_id])
     users = trip.users
