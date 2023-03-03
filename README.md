@@ -184,9 +184,71 @@ Example Value:
             "city": "Denver",
             "country": "United States",
             "postcode": "80020",
-            "place_id": "21fqirl123b1278"
+            "place_id": "21fqirl123b1278",
+            "start_date": "2023-03-14",
+            "end_date": "2023-03-17",
+            "image_url": "https://live.staticflickr.com/65535/52190921778_23ed1cc279_w.jpg",
+            "events": [
+                {
+                    "id": 236,
+                    "trip_id": 21,
+                    "event_date": null,
+                    "event_time": null,
+                    "event_id": "515dc823b891e357c059ae4731ce3ad34040f00102f901af846c1000000000920315546865204465706f74204261722026204772696c6c",
+                    "votes": null,
+                    "confirmed": false,
+                    "created_at": "2023-03-03T04:24:25.625Z",
+                    "updated_at": "2023-03-03T04:24:25.625Z",
+                    "name": "The Depot Bar & Grill",
+                    "address": "East Hearne Avenue, Paris, TX 75460, United States of America",
+                    "category": "restaurant"
+                },
+                {...},
+                {...},
+                {...},
+                {etc},
+            ]
+        },
+        "relationships": {
+            "events": {
+                "data": [
+                    {
+                        "id": "236",
+                        "type": "event"
+                    },
+                    {...},
+                    {etc},
+                ]
+            }
         }
-    }
+    },
+    "included": [
+        {
+            "id": "236",
+            "type": "event",
+            "attributes": {
+                "id": 236,
+                "trip_id": 21,
+                "event_date": null,
+                "event_time": null,
+                "event_id": "515dc823b891e357c059ae4731ce3ad34040f00102f901af846c1000000000920315546865204465706f74204261722026204772696c6c",
+                "votes": null,
+                "confirmed": false,
+                "name": "The Depot Bar & Grill",
+                "address": "East Hearne Avenue, Paris, TX 75460, United States of America",
+                "category": "restaurant"
+            },
+            "relationships": {
+                "trip": {
+                    "data": {
+                        "id": "21",
+                        "type": "trip"
+                    }
+                }
+            }
+        },
+        {etc},
+    ]
 }
 ```
 
