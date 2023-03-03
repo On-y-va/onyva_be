@@ -36,7 +36,7 @@ describe 'Users update API' do
         expect(user.first_name).to eq(previous_user_description)
         expect(user.first_name).to eq("Jeff")
 
-        expect(response_body[:error]).to match("Validation failed: First name can't be blank")
+        expect(response_body[:error].first[:title]).to match("Validation failed: First name can't be blank")
       end
 
       it 'fails if to update if user last name is left blank' do
@@ -54,7 +54,7 @@ describe 'Users update API' do
         expect(user.last_name).to eq(previous_user_description)
         expect(user.last_name).to eq("Jeff")
 
-        expect(response_body[:error]).to match("Validation failed: Last name can't be blank")
+        expect(response_body[:error].first[:title]).to match("Validation failed: Last name can't be blank")
       end
 
       it 'fails if to update if user email is left blank' do
@@ -72,7 +72,7 @@ describe 'Users update API' do
         expect(user.email).to eq(previous_user_description)
         expect(user.email).to eq("jeff@jeff.com")
 
-        expect(response_body[:error]).to match("Validation failed: Email can't be blank")
+        expect(response_body[:error].first[:title]).to match("Validation failed: Email can't be blank")
       end
     end
   end

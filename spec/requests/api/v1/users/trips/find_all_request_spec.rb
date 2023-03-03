@@ -6,10 +6,10 @@ describe 'Find all trips for a user API' do
       it 'can return the users trip by status pending' do
         user = create(:user)
 
-        trip_1 = create(:trip)
-        trip_2 = create(:trip)
-        trip_3 = create(:trip)
-        trip_4 = create(:trip)
+        trip_1 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_2 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_3 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_4 = create(:trip, start_date: Time.now, end_date: Time.now)
 
         trip_attendees_1 = create(:trip_attendee, user_id: user.id, trip_id: trip_1.id, status: 0)
         trip_attendees_2 = create(:trip_attendee, user_id: user.id, trip_id: trip_2.id, status: 0)
@@ -46,9 +46,9 @@ describe 'Find all trips for a user API' do
       it 'can return the users trip by status accepted' do
         user = create(:user)
 
-        trip_1 = create(:trip)
-        trip_2 = create(:trip)
-        trip_3 = create(:trip)
+        trip_1 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_2 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_3 = create(:trip, start_date: Time.now, end_date: Time.now)
 
         trip_attendees_1 = create(:trip_attendee, user_id: user.id, trip_id: trip_1.id, status: 0)
         trip_attendees_2 = create(:trip_attendee, user_id: user.id, trip_id: trip_2.id, status: 1)
@@ -83,9 +83,9 @@ describe 'Find all trips for a user API' do
       it 'can return the users trip by status declined' do
         user = create(:user)
 
-        trip_1 = create(:trip)
-        trip_2 = create(:trip)
-        trip_3 = create(:trip)
+        trip_1 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_2 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_3 = create(:trip, start_date: Time.now, end_date: Time.now)
 
         trip_attendees_1 = create(:trip_attendee, user_id: user.id, trip_id: trip_1.id, status: 0)
         trip_attendees_2 = create(:trip_attendee, user_id: user.id, trip_id: trip_2.id, status: 1)
@@ -122,10 +122,10 @@ describe 'Find all trips for a user API' do
       it 'can return the users trip by status pending' do
         user = create(:user)
 
-        trip_1 = create(:trip)
-        trip_2 = create(:trip)
-        trip_3 = create(:trip)
-        trip_4 = create(:trip)
+        trip_1 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_2 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_3 = create(:trip, start_date: Time.now, end_date: Time.now)
+        trip_4 = create(:trip, start_date: Time.now, end_date: Time.now)
 
         trip_attendees_1 = create(:trip_attendee, user_id: user.id, trip_id: trip_1.id, status: 0)
         trip_attendees_2 = create(:trip_attendee, user_id: user.id, trip_id: trip_2.id, status: 0)

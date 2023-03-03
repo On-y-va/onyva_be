@@ -27,8 +27,8 @@ RSpec.describe EventsService do
   end
 
   it 'can return restaurants based off a city', :vcr do
-    city = CityFacade.get_city_info("Barcelona", "Spain", "08001")
-    place_id = city.place_id
+    place_id = CityFacade.get_city_info("Barcelona", "Spain", "08001")
+    # place_id = city.place_id
 
     restaurant_search = EventsService.get_restaurants(place_id)
 
@@ -49,8 +49,8 @@ RSpec.describe EventsService do
   end
 
   it 'can return suggested things to do based off a city', :vcr do 
-    city = CityFacade.get_city_info("Barcelona", "Spain", "08001")
-    place_id = city.place_id
+    place_id = CityFacade.get_city_info("Barcelona", "Spain", "08001")
+    # place_id = city.place_id
 
     tourist_attractions_search = EventsService.get_tourist_attractions(place_id)
 

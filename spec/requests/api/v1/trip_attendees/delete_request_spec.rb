@@ -5,7 +5,7 @@ describe 'TripAttendee delete API' do
     context 'happy path' do
       it 'deletes a trip attendee' do
         user = create(:user)
-        trip = create(:trip)
+        trip = create(:trip, start_date: Time.now, end_date: Time.now)
         trip_attendee = create(:trip_attendee, user_id: user.id, trip_id: trip.id)
 
         expect(trip_attendee.status).to eq("pending")

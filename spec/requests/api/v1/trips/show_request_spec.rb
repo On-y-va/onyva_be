@@ -34,7 +34,7 @@ describe 'Trips show API' do
 
     context 'when the trip does not exist' do
       it 'responds with an error' do
-        trip = create(:trip)
+        trip = create(:trip, start_date: Time.now, end_date: Time.now)
 
         get "/api/v1/trips/#{Trip.last.id+1}"
 

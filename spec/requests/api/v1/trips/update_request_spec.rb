@@ -4,7 +4,7 @@ describe 'Users update API' do
   describe 'PATCH /trips/:id' do
     context 'if the trip is successfully updated' do
       it 'updates the trip' do
-        trip = create(:trip)
+        trip = create(:trip, start_date: Time.now, end_date: Time.now)
         previous_trip_name = Trip.last.name
         trip_params = { name: "Updated Trip" }
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -21,7 +21,7 @@ describe 'Users update API' do
 
     context 'if the trip is not updated successfully' do
       it 'fails if to update if trip name is left blank' do
-        trip = create(:trip, name: 'Updated Trip')
+        trip = create(:trip, name: 'Updated Trip', start_date: Time.now, end_date: Time.now)
         previous_trip_name = Trip.last.name
         trip_params = { name: "" }
         headers = { "CONTENT_TYPE" => "application/json" }
@@ -35,7 +35,7 @@ describe 'Users update API' do
         expect(trip.name).to eq(previous_trip_name)
         expect(trip.name).to eq("Updated Trip")
 
-        expect(response_body[:error]).to match("Validation failed: Name can't be blank")
+        expect(response_body[:error].first[:title]).to match("Validation failed: Name can't be blank")
       end
     end
   end
