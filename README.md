@@ -7,7 +7,7 @@
 
 API for Onyva Trip Planning Application
 
-[Production Link]()
+[Production Link](https://onyva-be.herokuapp.com/api/v1/trips/1)
 
 ## RESTful Endpoints
 
@@ -144,10 +144,7 @@ Example Value:
     }
 }
 ```
-    
-| Code | Description |
-| :--- | :--- |
-| 400 | `BAD REQUEST` |
+
 
 </details>
 
@@ -192,19 +189,7 @@ Example Value:
     }
 }
 ```
-| Code | Description |
-| :--- | :--- |
-| 400 | `BAD REQUEST` |
-    
-    
-Example Value:
 
-```json
-{
-    "data": {
-    }
-}
-```
 
 </details>
 
@@ -215,7 +200,51 @@ Example Value:
 ### Create a Trip
 
 ```http
-POST /api/v1/users/:id
+POST /api/v1/trips
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 201 | `CREATED` |
+
+Example Value:
+
+```json
+{
+    "data": {
+        "id": "1",
+        "type": "trip",
+        "attributes": {
+            "name": "Girl's Trip",
+            "city": "Denver",
+            "country": "United States",
+            "postcode": "80020",
+            "place_id": "21fqirl123b1278"
+        }
+    }
+}
+```
+
+
+</details>
+
+
+---
+
+
+### Edit a Trip
+
+```http
+PATCH /api/v1/trips
 ```
 
 <details close>
@@ -237,31 +266,19 @@ Example Value:
 {
     "data": {
         "id": "1",
-        "type": "user",
+        "type": "trip",
         "attributes": {
-            "first name": "bob",
-            "Last_name": "Jef",
-            "phone_number": "123456789",
-            "email": "jef@jef.com",
-            "password_digest": "$2a$12$fluERN41F2GOxWGW08JPmOh7AwL]rdDJo4fXyrLukj5yzGKIG/Kpiv"
-            "emergency_contact_name": null,
-            "emergency_contact_phone_number": null
+            "name": "Girl's Trip",
+            "city": "Denver",
+            "country": "United States",
+            "postcode": "80020",
+            "place_id": "21fqirl123b1278"
         }
     }
 }
 ```
-    
-| Code | Description |
-| :--- | :--- |
-| 400 | `BAD REQUEST` |
 
 </details>
-
-
----
-
-
-### Edit a Trip
 
 ---
 
