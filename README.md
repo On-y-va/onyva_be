@@ -11,10 +11,14 @@ API for Onyva Trip Planning Application
 
 ## RESTful Endpoints
 
-### Get all Users
+
+---
+
+### Get a User
+
 
 ```http
-GET /api/v1/users
+GET /api/v1/users/:id
 ```
 
 <details close>
@@ -33,17 +37,25 @@ No Parameters
 Example Value:
 
 ```json
+
 {
-   
-   }
+    "data": {
+        "id": "1",
+        "type": "user",
+        "attributes": {
+            "first_name": "Kaylah",
+            "last_name": "Rose",
+            "phone_number": null,
+            "email": "kaylahrosem@gmail.com",
+            "emergency_contact_name": null,
+            "emergency_contact_phone_number": null,
+            "google_uid": "12345678901234567890"
+        }
+    }
+}
 ```
 
 </details>
-
----
-
-### Get a User
-
 
 ---
 
