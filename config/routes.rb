@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       end
       
       resources :trips, only: [:show, :create, :update, :destroy] do
+        get '/users', to: 'trip/users#index'
         resources :flights, only: [:index, :create], controller: 'trips/flights'
+        resources :trip_attendees, only: [:create]
       end
     end
   end
