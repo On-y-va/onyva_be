@@ -345,7 +345,8 @@ Pull down the [Front-end repo](https://github.com/On-y-va/onyva_fe). Set up inst
 
 ## Database Schema
 
-![Screen Shot 2023-02-22 at 13 32 55](https://user-images.githubusercontent.com/111713452/220828547-a7360860-b73e-4209-a91e-c04fc5b56211.png)
+![Screen Shot 2023-03-03 at 15 30 07](https://user-images.githubusercontent.com/111713452/222853257-e6106237-b246-4a5e-b9d2-5379cb8cfe51.png)
+
 
 ## Contributors
 
