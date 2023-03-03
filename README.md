@@ -93,7 +93,6 @@ Example Value:
             "Last_name": "Potter",
             "phone_number": "123456789",
             "email": "harry@hogwarts.com",
-            "password digest": "$2a$12$fluERN41F2GOxWGW08JPmOh7AwL]rdDJo4fXyrLukj5yzGKIG/Kpiv"
             "emergency_contact_name": null,
             "emergency_contact_phone_number": null
         }
@@ -152,11 +151,6 @@ Example Value:
 
 </details>
 
-
----
-
-
-### Delete a User
 
 ---
 
@@ -220,6 +214,50 @@ Example Value:
 
 ### Create a Trip
 
+```http
+POST /api/v1/users/:id
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": {
+        "id": "1",
+        "type": "user",
+        "attributes": {
+            "first name": "bob",
+            "Last_name": "Jef",
+            "phone_number": "123456789",
+            "email": "jef@jef.com",
+            "password_digest": "$2a$12$fluERN41F2GOxWGW08JPmOh7AwL]rdDJo4fXyrLukj5yzGKIG/Kpiv"
+            "emergency_contact_name": null,
+            "emergency_contact_phone_number": null
+        }
+    }
+}
+```
+    
+| Code | Description |
+| :--- | :--- |
+| 400 | `BAD REQUEST` |
+
+</details>
+
+
 ---
 
 
@@ -229,6 +267,32 @@ Example Value:
 
 
 ### Delete a Trip
+
+```http
+DELETE /api/v1/trip/:id
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 204 | No Content |
+
+Example Value:
+
+```json
+''
+```
+
+</details>
+
 
 
 ---
