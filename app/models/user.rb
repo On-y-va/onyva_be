@@ -14,6 +14,10 @@ class User < ApplicationRecord
     .first
   end
 
+  def self.find_users_by_email(user_emails)
+     self.where(email: user_emails)
+  end
+
   def self.find_user_by_flight(flight)
     self.find_by(id: flight.user_id)
   end
