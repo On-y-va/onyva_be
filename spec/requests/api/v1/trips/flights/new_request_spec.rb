@@ -22,7 +22,6 @@ describe 'Flights create API' do
 
         expect(response).to be_successful
         expect(response.status).to eq(201)
-        expect(new_flight.airline_code).to eq(flight_params[:airline_code])
         expect(new_flight.flight_number).to eq(flight_params[:flight_number])
         expect(new_flight.date).to eq(flight_params[:date])
       end

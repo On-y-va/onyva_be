@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
       t1 = Trip.create!(name: "Test Trip", city: "London", country: "United States", postcode: "1234", start_date: "1", end_date: "2")
       u1 = User.create!(first_name: "M", last_name: "M", phone_number: "1234", email: "asdfasdf@asdf.com", google_uid: "1hraha3t2gw")
       ta1 = TripAttendee.create!(user_id: u1.id, trip_id: t1.id)
-      f1 = Flight.create!(user_id: u1.id, airline_code: "SW", flight_number: "1", date: DateTime.new(2012, 8, 29, 22, 35, 0))
+      f1 = Flight.create!(user_id: u1.id, flight_number: "SW123", date: DateTime.new(2012, 8, 29, 22, 35, 0))
 
       expect(User.find_user_by_flight(f1)).to eq(u1)
     end
@@ -72,7 +72,7 @@ RSpec.describe User, type: :model do
 
       trip_attendees_1 = create(:trip_attendee, user_id: user.id, trip_id: trip_1.id, status: 0)
       trip_attendees_3 = create(:trip_attendee, user_id: user2.id, trip_id: trip_1.id, status: 0)
-    
+
       expect(user.find_user_trip_by_status(0)).to eq([trip_1])
     end
   end

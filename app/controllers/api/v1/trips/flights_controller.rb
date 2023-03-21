@@ -9,7 +9,7 @@ class Api::V1::Trips::FlightsController < ApplicationController
   end
 
   def create
-    @user = User.find_user_by_email(params[:flight][:email])
+    @user = User.find_by(email: params[:flight][:user_email])
     if @user.nil?
       render json: UserSerializer.no_matches_found
     else
