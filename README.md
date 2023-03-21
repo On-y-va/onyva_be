@@ -7,14 +7,18 @@
 
 API for Onyva Trip Planning Application
 
-[Production Link]()
+[Production Link](https://onyva-be.herokuapp.com/api/v1/trips/1)
 
 ## RESTful Endpoints
 
-### Get all Users
+<details close>
+
+
+### Get a User
+
 
 ```http
-GET /api/v1/users
+GET /api/v1/users/:id
 ```
 
 <details close>
@@ -33,17 +37,70 @@ No Parameters
 Example Value:
 
 ```json
+
 {
-   
-   }
+    "data": {
+        "id": "1",
+        "type": "user",
+        "attributes": {
+            "first_name": "Kaylah",
+            "last_name": "Rose",
+            "phone_number": null,
+            "email": "kaylahrosem@gmail.com",
+            "emergency_contact_name": null,
+            "emergency_contact_phone_number": null,
+            "google_uid": "12345678901234567890"
+        }
+    }
+}
 ```
 
 </details>
 
 ---
 
-### Get a User
+### Search for user
 
+
+```http
+GET /api/v1/users/find
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+GOOGLE_UID=12345678901234567890
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+
+{
+    "data": {
+        "id": "1",
+        "type": "user",
+        "attributes": {
+            "first_name": "Kaylah",
+            "last_name": "Rose",
+            "phone_number": null,
+            "email": "kaylahrosem@gmail.com",
+            "emergency_contact_name": null,
+            "emergency_contact_phone_number": null,
+            "google_uid": "12345678901234567890"
+        }
+    }
+}
+```
+
+</details>
 
 ---
 
@@ -78,10 +135,9 @@ Example Value:
         "type": "user",
         "attributes": {
             "first name": "Harry",
-            "Last_name": "Potter",
+            "last_name": "Potter",
             "phone_number": "123456789",
             "email": "harry@hogwarts.com",
-            "password digest": "$2a$12$fluERN41F2GOxWGW08JPmOh7AwL]rdDJo4fXyrLukj5yzGKIG/Kpiv"
             "emergency_contact_name": null,
             "emergency_contact_phone_number": null
         }
@@ -126,25 +182,16 @@ Example Value:
             "Last_name": "Jef",
             "phone_number": "123456789",
             "email": "jef@jef.com",
-            "password_digest": "$2a$12$fluERN41F2GOxWGW08JPmOh7AwL]rdDJo4fXyrLukj5yzGKIG/Kpiv"
             "emergency_contact_name": null,
             "emergency_contact_phone_number": null
         }
     }
 }
 ```
-    
-| Code | Description |
-| :--- | :--- |
-| 400 | `BAD REQUEST` |
+
 
 </details>
 
-
----
-
-
-### Delete a User
 
 ---
 
@@ -181,24 +228,74 @@ Example Value:
             "city": "Denver",
             "country": "United States",
             "postcode": "80020",
-            "place_id": "21fqirl123b1278"
+            "place_id": "21fqirl123b1278",
+            "start_date": "2023-03-14",
+            "end_date": "2023-03-17",
+            "image_url": "https://live.staticflickr.com/65535/52190921778_23ed1cc279_w.jpg",
+            "events": [
+                {
+                    "id": 236,
+                    "trip_id": 21,
+                    "event_date": null,
+                    "event_time": null,
+                    "event_id": "515dc823b891e357c059ae4731ce3ad34040f00102f901af846c1000000000920315546865204465706f74204261722026204772696c6c",
+                    "votes": null,
+                    "confirmed": false,
+                    "created_at": "2023-03-03T04:24:25.625Z",
+                    "updated_at": "2023-03-03T04:24:25.625Z",
+                    "name": "The Depot Bar & Grill",
+                    "address": "East Hearne Avenue, Paris, TX 75460, United States of America",
+                    "category": "restaurant"
+                },
+                {...},
+                {...},
+                {...},
+                {etc},
+            ]
+        },
+        "relationships": {
+            "events": {
+                "data": [
+                    {
+                        "id": "236",
+                        "type": "event"
+                    },
+                    {...},
+                    {etc},
+                ]
+            }
         }
-    }
+    },
+    "included": [
+        {
+            "id": "236",
+            "type": "event",
+            "attributes": {
+                "id": 236,
+                "trip_id": 21,
+                "event_date": null,
+                "event_time": null,
+                "event_id": "515dc823b891e357c059ae4731ce3ad34040f00102f901af846c1000000000920315546865204465706f74204261722026204772696c6c",
+                "votes": null,
+                "confirmed": false,
+                "name": "The Depot Bar & Grill",
+                "address": "East Hearne Avenue, Paris, TX 75460, United States of America",
+                "category": "restaurant"
+            },
+            "relationships": {
+                "trip": {
+                    "data": {
+                        "id": "21",
+                        "type": "trip"
+                    }
+                }
+            }
+        },
+        {etc},
+    ]
 }
 ```
-| Code | Description |
-| :--- | :--- |
-| 400 | `BAD REQUEST` |
-    
-    
-Example Value:
 
-```json
-{
-    "data": {
-    }
-}
-```
 
 </details>
 
@@ -208,18 +305,458 @@ Example Value:
 
 ### Create a Trip
 
+```http
+POST /api/v1/trips
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 201 | `CREATED` |
+
+Example Value:
+
+```json
+{
+    "data": {
+        "id": "1",
+        "type": "trip",
+        "attributes": {
+            "name": "Girl's Trip",
+            "city": "Denver",
+            "country": "United States",
+            "postcode": "80020",
+            "place_id": "21fqirl123b1278",
+            "start_date": "2023-03-14",
+            "end_date": "2023-03-17",
+            "image_url": "https://live.staticflickr.com/65535/52190921778_23ed1cc279_w.jpg",
+            "events": [
+                {
+                    "id": 236,
+                    "trip_id": 21,
+                    "event_date": null,
+                    "event_time": null,
+                    "event_id": "515dc823b891e357c059ae4731ce3ad34040f00102f901af846c1000000000920315546865204465706f74204261722026204772696c6c",
+                    "votes": null,
+                    "confirmed": false,
+                    "created_at": "2023-03-03T04:24:25.625Z",
+                    "updated_at": "2023-03-03T04:24:25.625Z",
+                    "name": "The Depot Bar & Grill",
+                    "address": "East Hearne Avenue, Paris, TX 75460, United States of America",
+                    "category": "restaurant"
+                },
+                {...},
+                {...},
+                {...},
+                {etc},
+            ]
+        },
+        "relationships": {
+            "events": {
+                "data": [
+                    {
+                        "id": "236",
+                        "type": "event"
+                    },
+                    {...},
+                    {etc},
+                ]
+            }
+        }
+    },
+    "included": [
+        {
+            "id": "236",
+            "type": "event",
+            "attributes": {
+                "id": 236,
+                "trip_id": 21,
+                "event_date": null,
+                "event_time": null,
+                "event_id": "515dc823b891e357c059ae4731ce3ad34040f00102f901af846c1000000000920315546865204465706f74204261722026204772696c6c",
+                "votes": null,
+                "confirmed": false,
+                "name": "The Depot Bar & Grill",
+                "address": "East Hearne Avenue, Paris, TX 75460, United States of America",
+                "category": "restaurant"
+            },
+            "relationships": {
+                "trip": {
+                    "data": {
+                        "id": "21",
+                        "type": "trip"
+                    }
+                }
+            }
+        },
+        {etc},
+    ]
+}
+```
+
+
+</details>
+
+
 ---
 
 
 ### Edit a Trip
+
+```http
+PATCH /api/v1/trips
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": {
+        "id": "1",
+        "type": "trip",
+        "attributes": {
+            "name": "Girl's Trip",
+            "city": "Denver",
+            "country": "United States",
+            "postcode": "80020",
+            "place_id": "21fqirl123b1278",
+            "start_date": "2023-03-14",
+            "end_date": "2023-03-17",
+            "image_url": "https://live.staticflickr.com/65535/52190921778_23ed1cc279_w.jpg",
+            "events": [
+                {
+                    "id": 236,
+                    "trip_id": 21,
+                    "event_date": null,
+                    "event_time": null,
+                    "event_id": "515dc823b891e357c059ae4731ce3ad34040f00102f901af846c1000000000920315546865204465706f74204261722026204772696c6c",
+                    "votes": null,
+                    "confirmed": false,
+                    "created_at": "2023-03-03T04:24:25.625Z",
+                    "updated_at": "2023-03-03T04:24:25.625Z",
+                    "name": "The Depot Bar & Grill",
+                    "address": "East Hearne Avenue, Paris, TX 75460, United States of America",
+                    "category": "restaurant"
+                },
+                {...},
+                {...},
+                {...},
+                {etc},
+            ]
+        },
+        "relationships": {
+            "events": {
+                "data": [
+                    {
+                        "id": "236",
+                        "type": "event"
+                    },
+                    {...},
+                    {etc},
+                ]
+            }
+        }
+    },
+    "included": [
+        {
+            "id": "236",
+            "type": "event",
+            "attributes": {
+                "id": 236,
+                "trip_id": 21,
+                "event_date": null,
+                "event_time": null,
+                "event_id": "515dc823b891e357c059ae4731ce3ad34040f00102f901af846c1000000000920315546865204465706f74204261722026204772696c6c",
+                "votes": null,
+                "confirmed": false,
+                "name": "The Depot Bar & Grill",
+                "address": "East Hearne Avenue, Paris, TX 75460, United States of America",
+                "category": "restaurant"
+            },
+            "relationships": {
+                "trip": {
+                    "data": {
+                        "id": "21",
+                        "type": "trip"
+                    }
+                }
+            }
+        },
+        {etc},
+    ]
+}
+```
+
+</details>
 
 ---
 
 
 ### Delete a Trip
 
+```http
+DELETE /api/v1/trip/:id
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 204 | No Content |
+
+Example Value:
+
+```json
+""
+```
+
+</details>
+
+
 
 ---
+
+
+
+### Get a User's Trips
+
+```http
+GET /api/v1/users/:id/trips/find_all?status=status
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+STATUS=status
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | 'OK' |
+
+Example Value:
+
+```json
+{
+    "data": [
+        {
+            "id": "9",
+            "type": "trip",
+            "attributes": {
+                "name": "Trippin",
+                    "city": "Cabo",
+                    "country": "Mexico",
+                    "postcode": "00123",
+                    "place_id": "518120e5cc1b8441c0594f07b29e5a9120c0f00101f90188a2040000000000c00208",
+                    "start_date": "2023-02-28",
+                    "end_date": "2023-03-09",
+                    "image_url": "https://live.staticflickr.com/65535/5716766064_64559491a3_w.jpg",
+                    "events": [
+                        {
+                            "id": 121,
+                            "trip_id": 9,
+                            "event_date": null,
+                            "event_time": null,
+                            "event_id": "51d30736b1098341c0596f03fc1c808e20c0f00102f90139476d250000000092030a41204368c3a163617261",
+                            "votes": null,
+                            "confirmed": false,
+                            "created_at": "2023-03-01T02:55:00.282Z",
+                            "updated_at": "2023-03-01T02:55:00.282Z",
+                            "name": "A Chácara",
+                            "address": "Rua Trapiche, Cabo de Santo Agostinho - PE, 54515-330, Brazil",
+                            "category": "restaurant"
+                        },
+                        {etc}
+                    ]
+            "relationships": {etc}
+            }
+        }
+    ] 
+}
+```
+
+</details>
+
+
+
+---
+### Create Trip Attendee (Trip Invitation)
+
+```http
+POST /api/v1/trips/:id/users
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 204 | No Content |
+
+Example Value:
+
+```json
+""
+```
+
+</details>
+
+
+
+---
+### Get Trip Attendees
+
+```http
+GET /api/v1/trips/:id/users
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | 'OK' |
+
+Example Value:
+
+```json
+{
+    "data": [
+        {
+            "id": "7",
+            "type": "user",
+            "attributes": {
+                "first_name": "Kaylah",
+                "last_name": "Rose",
+                "phone_number": "123456789",
+                "email": "kaylahrosem@gmail.com",
+                "emergency_contact_name": null,
+                "emergency_contact_phone_number": "720938547",
+            }
+        },
+        {
+            "id": "3",
+            "type": "user",
+            "attributes": {
+                "first name": "Harry",
+                "last_name": "Potter",
+                "phone_number": "123456789",
+                "email": "harry@hogwarts.com",
+                "emergency_contact_name": null,
+                "emergency_contact_phone_number": null
+            }
+        }
+    ]
+}
+```
+
+</details>
+
+
+
+---
+
+
+### Update Trip Attendee (Accept Trip Invitation)
+
+```http
+PATCH /api/v1/users/:id/trips/:id
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 204 | No Content |
+
+Example Value:
+
+```json
+""
+```
+
+</details>
+
+
+---
+
+### Delete Trip Attendee (Decline Trip Invitation)
+
+```http
+DELETE /api/v1/users/:id/trips/:id
+```
+
+<details close>
+<summary>  Details </summary>
+<br>
+    
+Parameters: <br>
+```
+CONTENT_TYPE=application/json
+```
+
+| Code | Description |
+| :--- | :--- |
+| 204 | No Content |
+
+Example Value:
+
+```json
+""
+```
+
+</details>
+</details>
 
 
 
@@ -246,13 +783,14 @@ Running this project requires Rails 5.2.8 and Ruby 2.7.4.
 3. `bundle install`
 4. `rails db:{drop,create,migrate,seed}`
 5. Run the test suite with `bundle exec rspec`
-6. Start the local server by running `rails s'
+6. Start the local server by running `rails s`
 
 Pull down the [Front-end repo](https://github.com/On-y-va/onyva_fe). Set up instructions are in that repository's README.
 
 ## Database Schema
 
-![Screen Shot 2023-02-22 at 13 32 55](https://user-images.githubusercontent.com/111713452/220828547-a7360860-b73e-4209-a91e-c04fc5b56211.png)
+![Screen Shot 2023-03-03 at 15 30 07](https://user-images.githubusercontent.com/111713452/222853257-e6106237-b246-4a5e-b9d2-5379cb8cfe51.png)
+
 
 ## Contributors
 
