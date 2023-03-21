@@ -25,5 +25,6 @@ class User < ApplicationRecord
   def find_user_trip_by_status(trip_status)
    self.trips.joins(:trip_attendees)
    .where('trip_attendees.status = ?', trip_status)
+   .distinct
   end
 end

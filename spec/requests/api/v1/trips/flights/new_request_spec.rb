@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Flights create API' do
-  describe 'POST /trips' do
+  describe 'POST /trips/:trip_id/flights' do
     context 'when a flight is successfully created' do
       it 'can create a new flight' do
         user = create(:user)

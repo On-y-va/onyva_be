@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://aerodatabox.p.rapidapi.com/flights/number/DLH452
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Rapidapi-Key:
+      - aff8d95df0msh99910495b6de7adp1614a4jsn9fc180d6d2f3
+      X-Rapidapi-Host:
+      - aerodatabox.p.rapidapi.com
+      User-Agent:
+      - Faraday v2.7.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Mar 2023 21:41:04 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public,max-age=300
+      Last-Modified:
+      - Tue, 14 Mar 2023 21:37:50 GMT
+      Vary:
+      - Accept-Encoding
+      - Accept-Language
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Cf-Ray:
+      - 7a7fadc05e5e6fb0-IAD
+      Cf-Cache-Status:
+      - HIT
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Ga2KfDYXrWcjPe3WOLB2iHuglyOweKehVBFqytlqYTCTlhlvUOgLPP5mdncYcy%2FdNLNuix4LnxKmxV52eIYbXW1Xz972N%2Fygubej4NTxqlUSrT7tLh5ucVtw5Vv0RELQC%2Bry9nWC"}],"group":"cf-nel","max_age":604800}'
+      X-Ratelimit-Free-Tier-Limit:
+      - '2000'
+      X-Ratelimit-Free-Tier-Remaining:
+      - '2000'
+      X-Ratelimit-Free-Tier-Reset:
+      - '2676452'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Limit:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Remaining:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Reset:
+      - '2676452'
+      X-Ratelimit-Tier-2-Limit:
+      - '250'
+      X-Ratelimit-Tier-2-Remaining:
+      - '241'
+      X-Ratelimit-Tier-2-Reset:
+      - '2676452'
+      X-Ratelimit-Tier-3-Limit:
+      - '250'
+      X-Ratelimit-Tier-3-Remaining:
+      - '250'
+      X-Ratelimit-Tier-3-Reset:
+      - '2676452'
+      X-Ratelimit-Tier-1-Limit:
+      - '250'
+      X-Ratelimit-Tier-1-Remaining:
+      - '250'
+      X-Ratelimit-Tier-1-Reset:
+      - '2676452'
+      Server:
+      - RapidAPI-1.2.8
+      X-Rapidapi-Version:
+      - 1.2.8
+      X-Rapidapi-Region:
+      - AWS - us-east-1
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"greatCircleDistance":{"meter":9626517.14,"km":9626.517,"mile":5981.64,"nm":5197.903,"feet":31583061.49},"departure":{"airport":{"icao":"EDDM","iata":"MUC","name":"Munich","shortName":"Munich","municipalityName":"Munich","location":{"lat":48.3538,"lon":11.7861},"countryCode":"DE"},"scheduledTimeLocal":"2023-03-14
+        12:20+01:00","actualTimeLocal":"2023-03-14 12:20+01:00","scheduledTimeUtc":"2023-03-14
+        11:20Z","actualTimeUtc":"2023-03-14 11:20Z","terminal":"2","quality":["Basic","Live"]},"arrival":{"airport":{"icao":"KLAX","iata":"LAX","name":"Los
+        Angeles","shortName":"Los Angeles","municipalityName":"Los Angeles","location":{"lat":33.9425,"lon":-118.408},"countryCode":"US"},"scheduledTimeLocal":"2023-03-14
+        16:25-07:00","scheduledTimeUtc":"2023-03-14 23:25Z","terminal":"B","quality":["Basic"]},"lastUpdatedUtc":"2023-03-14
+        12:01Z","number":"LH 452","callSign":"DLH452","status":"Departed","codeshareStatus":"IsOperator","isCargo":false,"aircraft":{"reg":"D-AIXH","modeS":"3C6708","model":"Airbus
+        A350"},"airline":{"name":"Lufthansa","iata":"LH","icao":"DLH"}}]'
+  recorded_at: Tue, 14 Mar 2023 21:41:04 GMT
+recorded_with: VCR 6.1.0

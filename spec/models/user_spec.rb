@@ -63,5 +63,17 @@ RSpec.describe User, type: :model do
       expect(user.find_user_trip_by_status(0)).to_not eq([trip_3, trip_5])
       expect(user.find_user_trip_by_status(2)).to_not eq([trip_1])
     end
+
+    it "returns a user's trip based off status" do
+      user = create(:user)
+      user2 = create(:user)
+
+      trip_1 = create(:trip, start_date: Time.now, end_date: Time.now)
+
+      trip_attendees_1 = create(:trip_attendee, user_id: user.id, trip_id: trip_1.id, status: 0)
+      trip_attendees_3 = create(:trip_attendee, user_id: user2.id, trip_id: trip_1.id, status: 0)
+    
+      expect(user.find_user_trip_by_status(0)).to eq([trip_1])
+    end
   end
 end

@@ -12,8 +12,8 @@ event2 = Event.create!(trip_id: trip1.id, event_date: nil, event_time: nil, even
 event3 = Event.create!(trip_id: trip1.id, event_date: nil, event_time: nil, event_id: "515a2ed10f599b55c0594006245d33f04140f00103f901ea8da7dd0000000092031848617a656e27732042726967616465204d6f6e756d656e74", votes: nil, confirmed: false, name: "Hazen's Brigade Monument", address: "Old Nashville Highway, Murfreesboro, TN 37167, United States of America", category: "attraction")
 event4 = Event.create!(trip_id: trip1.id, event_date: nil, event_time: nil, event_id: "51fb255d85509c55c059cb278093d8eb4140f00102f901e4c69f2000000000920310526964656f75742043656d6574657279", votes: nil, confirmed: false, name: "Rideout Cemetery", address: "Murfreesboro, TN, United States of America", category: "attraction")
 
-flight1 = Flight.create!(user_id: user1.id, airline_code: "sw", flight_number: "123", date: "2023-03-01 00:00:00")
-flight2 = Flight.create!(user_id: user2.id, airline_code: "sw", flight_number: "345", date: "2023-04-01 00:00:00")
+flight1 = Flight.create!(user_id: user1.id, flight_number: "SW123", date: "2023-03-01 00:00:00")
+flight2 = Flight.create!(user_id: user2.id, flight_number: "SW345", date: "2023-04-01 00:00:00")
 
 tripattendee1 = TripAttendee.create!(user_id: user1.id, trip_id: trip1.id, status: "accepted")
 tripattendee2 = TripAttendee.create!(user_id: user1.id, trip_id: trip3.id, status: "pending")
