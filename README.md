@@ -3,11 +3,16 @@
 <img src="src/assets/logo_transparent.png" alt="onyva logo" width="200" height="auto" />
 </div>
 
-# Onyva Backend Service
+# <p align="center"> Onyva Backend Service </p>
 
-API for Onyva Trip Planning Application
+This application consumes external APIs to fetch information about any travel destination, whether it's a bustling city, a serene countryside, or a quaint village. With this data, we create personalized trip plans that cater to our users' unique interests and preferences. Onyva backend provides seamless integration with our frontend application, allowing users to effortlessly organize their trips with ease. By consuming our API, the frontend communicates with our application and unlocks a wealth of local recommendations for restaurants, attractions, and hidden gems.
 
-[Production Link](https://onyva-be.herokuapp.com/api/v1/trips/1)
+## About Onyva
+
+Onyva is an innovative travel application that aims to simplify the process of planning a trip and enhance the overall travel experience for users. With Onyva, users can easily create personalized itineraries for their trips, complete with local recommendations for restaurants and tourist attractions. Users can also invite their friends to join them on their trips and manage their trip details together.
+
+At its core, Onyva is committed to providing an exceptional travel experience for users, and we believe that our application can be a valuable tool for anyone looking to plan their next adventure.
+
 
 ## RESTful Endpoints
 
@@ -774,7 +779,14 @@ Onyva returns the following status codes in its API:
 | 500 | `INTERNAL SERVER ERROR` |
 
 ## Prerequisites
-Running this project requires Rails 5.2.8 and Ruby 2.7.4.
+Running this project requires:
+- Rails 5.2.8
+- Ruby 2.7.4
+- External APIs:
+  - This application required external API keys which are stored in a <i>.env</i> file at the top level of the program directory
+    - API keys can be requested but must be named as follows:
+      - :round_pushpin: GEOAPIFY_KEY - [Geoapify](https://myprojects.geoapify.com/projects)
+      - :camera: FLICKR_KEY - [FLICKR](https://www.flickr.com/services/api/misc.api_keys.html)
 
 ## Installation
 
@@ -784,6 +796,7 @@ Running this project requires Rails 5.2.8 and Ruby 2.7.4.
 4. `rails db:{drop,create,migrate,seed}`
 5. Run the test suite with `bundle exec rspec`
 6. Start the local server by running `rails s`
+7. Visit the app on `localhost:5000` in your web browser
 
 Pull down the [Front-end repo](https://github.com/On-y-va/onyva_fe). Set up instructions are in that repository's README.
 
