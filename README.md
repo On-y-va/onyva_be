@@ -787,6 +787,8 @@ Running this project requires:
     - API keys can be requested but must be named as follows:
       - :round_pushpin: GEOAPIFY_KEY - [Geoapify](https://myprojects.geoapify.com/projects)
       - :camera: FLICKR_KEY - [FLICKR](https://www.flickr.com/services/api/misc.api_keys.html)
+      - :airplane: AERO_KEY - [AeroDataBox](https://rapidapi.com/aedbx-aedbx/api/aerodatabox/)
+      - :round_pushpin: AERO_HOST - [AeroDataBox](https://rapidapi.com/aedbx-aedbx/api/aerodatabox/)  
 
 ## Installation
 
