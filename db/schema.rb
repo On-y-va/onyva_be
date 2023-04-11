@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_28_022206) do
+ActiveRecord::Schema.define(version: 2023_03_15_060638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2023_02_28_022206) do
     t.datetime "event_date"
     t.datetime "event_time"
     t.string "event_id"
-    t.integer "votes"
+    t.integer "votes", default: 0
     t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 2023_02_28_022206) do
 
   create_table "flights", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "airline_code"
     t.string "flight_number"
     t.datetime "date"
+    t.string "status"
     t.index ["user_id"], name: "index_flights_on_user_id"
   end
 

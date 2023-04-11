@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
       t1 = Trip.create!(name: "Test Trip", city: "London", country: "United States", postcode: "1234", start_date: "1", end_date: "2")
       u1 = User.create!(first_name: "M", last_name: "M", phone_number: "1234", email: "asdfasdf@asdf.com", google_uid: "1hraha3t2gw")
       ta1 = TripAttendee.create!(user_id: u1.id, trip_id: t1.id)
-      f1 = Flight.create!(user_id: u1.id, airline_code: "SW", flight_number: "1", date: DateTime.new(2012, 8, 29, 22, 35, 0))
+      f1 = Flight.create!(user_id: u1.id, flight_number: "SW123", date: DateTime.new(2012, 8, 29, 22, 35, 0))
 
       expect(User.find_user_by_flight(f1)).to eq(u1)
     end
@@ -62,6 +62,18 @@ RSpec.describe User, type: :model do
       expect(user.find_user_trip_by_status(1)).to_not eq([trip_1, trip_6])
       expect(user.find_user_trip_by_status(0)).to_not eq([trip_3, trip_5])
       expect(user.find_user_trip_by_status(2)).to_not eq([trip_1])
+    end
+
+    it "returns a user's trip based off status" do
+      user = create(:user)
+      user2 = create(:user)
+
+      trip_1 = create(:trip, start_date: Time.now, end_date: Time.now)
+
+      trip_attendees_1 = create(:trip_attendee, user_id: user.id, trip_id: trip_1.id, status: 0)
+      trip_attendees_3 = create(:trip_attendee, user_id: user2.id, trip_id: trip_1.id, status: 0)
+
+      expect(user.find_user_trip_by_status(0)).to eq([trip_1])
     end
   end
 end

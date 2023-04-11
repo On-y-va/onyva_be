@@ -10,8 +10,8 @@ describe 'TripUsers index API' do
 
         trip = create(:trip, id: 1)
 
-        trip_attendee = create(:trip_attendee, user_id: user1.id, trip_id: trip.id)
-        trip_attendee = create(:trip_attendee, user_id: user2.id, trip_id: trip.id)
+        trip_attendee = create(:trip_attendee, user_id: user1.id, trip_id: trip.id, status: 1)
+        trip_attendee = create(:trip_attendee, user_id: user2.id, trip_id: trip.id, status: 1)
         trip_attendee = create(:trip_attendee, user_id: user3.id, trip_id: trip.id)
 
         expect(user1.trips).to eq([trip])
@@ -20,7 +20,7 @@ describe 'TripUsers index API' do
         
         headers = { "CONTENT_TYPE" => "application/json" }
         
-        get "/api/v1/trips/#{trip.id}/users"
+        get "/api/v1/trips/#{trip.id}/users/find_all"
         
         trip_users = JSON.parse(response.body, symbolize_names: true)
 

@@ -33,9 +33,6 @@ describe 'Trip Flights Index API' do
 
         attributes = data[:attributes]
 
-        expect(attributes).to have_key(:airline_code)
-        expect(attributes[:airline_code]).to be_a(String)
-
         expect(attributes).to have_key(:flight_number)
         expect(attributes[:flight_number]).to be_a(String)
 

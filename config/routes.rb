@@ -9,8 +9,10 @@ Rails.application.routes.draw do
       end
       
       resources :trips, only: [:show, :create, :update, :destroy] do
-        get '/users', to: 'trips/users#index'
-        resources :flights, only: [:index, :create], controller: 'trips/flights'
+        get '/event', to: 'trips/events#show'
+        get '/users/find_all', to: 'trips/users#index'
+        resources :events, only: [:update], controller: 'trips/events'
+        resources :flights, controller: 'trips/flights'
         resources :trip_attendees, only: [:create]
       end
     end
