@@ -11,6 +11,8 @@ This application consumes external APIs to fetch information about any travel de
 
 Onyva is an innovative travel application that aims to simplify the process of planning a trip and enhance the overall travel experience for users. With Onyva, users can easily create personalized itineraries for their trips, complete with local recommendations for restaurants and tourist attractions. Users can also invite their friends to join them on their trips and manage their trip details together.
 
+Users can also invite their friends to join them on their trips and easily share their flight information for added convenience. One of the key features of Onyva is its advanced flight tracking technology, which allows users to keep track of their friends' flight status in real-time, ensuring a safer and more stress-free travel experience.
+
 At its core, Onyva is committed to providing an exceptional travel experience for users, and we believe that our application can be a valuable tool for anyone looking to plan their next adventure.
 
 
