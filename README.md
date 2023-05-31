@@ -1,6 +1,6 @@
 
 <div id="header" align="center">
-<img src="src/assets/logo_transparent.png" alt="onyva logo" width="200" height="auto" />
+<img src="https://raw.githubusercontent.com/On-y-va/onyva_be/main/src/assets/logo_transparent.png" alt="onyva logo" width="200" height="auto" />
 </div>
 
 # <p align="center"> Onyva Backend Service </p>
